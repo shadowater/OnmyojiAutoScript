@@ -33,6 +33,9 @@ class ScriptTask(GameUi, GeneralBattle, GeneralRoom, GeneralInvite, SwitchSoul, 
             self.run_switch_soul_by_name(self.config.gold_youkai.switch_soul.group_name,
                                          self.config.gold_youkai.switch_soul.team_name)
 
+        self.set_next_run(task='GoldYoukai', success=True, finish=False)
+        raise TaskEnd('GoldYoukai')
+
         # 开启加成
         con = self.config.gold_youkai.gold_youkai
         if con.buff_gold_50_click or con.buff_gold_100_click:
