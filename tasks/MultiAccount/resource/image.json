@@ -1,0 +1,38 @@
+[
+  {
+    "itemName": "user_center",
+    "imageName": "uesr_center.png",
+    "roiFront": "222,447,60,60",
+    "roiBack": "207,434,85,85",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "用户中心"
+  },
+  {
+    "itemName": "pull_down_tap",
+    "imageName": "pull_down_tap.png",
+    "roiFront": "849,319,30,21",
+    "roiBack": "383,277,518,106",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "下拉选择"
+  },
+  {
+    "itemName": "ios",
+    "imageName": "ios.png",
+    "roiFront": "496,361,90,127",
+    "roiBack": "496,361,90,127",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "ios图标"
+  },
+  {
+    "itemName": "android",
+    "imageName": "android.png",
+    "roiFront": "696,361,88,127",
+    "roiBack": "696,361,88,127",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "android图标"
+  }
+]
