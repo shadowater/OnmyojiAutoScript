@@ -2,6 +2,7 @@ import json
 import os
 from numpy import random
 from time import sleep
+from datetime import datetime
 
 import sys
 sys.path.append("D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install")
@@ -60,29 +61,7 @@ def switch_account_by_name(script, assets, accountName):
             break
 
 
-daliy_json = "D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\multi_daily_temp.json"
-target_json = "D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\config\\multi_account.json"
-os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open("D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\resource\\account_info_temp.json", 'rb'))
-
-# try start app
-config = Config('multi_account')
-device = Device(config)
-restart_task = restart_task(config, device)
-restart_task.app_start()
-
-# loop in multi account
-login = login_task(config, device)
-multi_account = MultiAccountAssets()
-account = multi_account.O_ACCOUNT
-for key, value in account_data.items():
-    account.name = key
-    account.keyword = value
-    
-    if "小号" in key:
-        continue
-
-    ## switch account
+def switch_account():
     log_out = RuleClick((27,33,65,59), (27,33,65,59))
     login.click(log_out, 1)
     sleep(random.random()*2+0.5)
@@ -109,11 +88,36 @@ for key, value in account_data.items():
         login.ui_click_until_disappear(multi_account.I_ANDROID)
     elif "ios" in key:
         login.ui_click_until_disappear(multi_account.I_IOS)
-    
-## login
+        
     login.app_handle_login()
 
-## load config and run task
+
+daliy_json = "D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\multi_daily_temp.json"
+target_json = "D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\config\\multi_account.json"
+os.system(f'copy {daliy_json} {target_json}')
+account_data = json.load(open("D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
+
+# try start app
+config = Config('multi_account')
+device = Device(config)
+restart_task = restart_task(config, device)
+restart_task.app_start()
+
+# loop in multi account
+login = login_task(config, device)
+multi_account = MultiAccountAssets()
+account = multi_account.O_ACCOUNT
+for key, value in account_data.items():
+    account.name = key
+    account.keyword = value
+    
+    if "小号" not in key:
+        continue
+
+    ## switch account
+    switch_account()
+
+    ## load config and run task
     demon = demon_task(config, device)
     try:
         demon.run()
@@ -135,8 +139,8 @@ for key, value in account_data.items():
         
     areaboss = areaboss_task(config, device)
     try:
-        area = input("Do you want to run area boss? (y/n)")
-        if area == 'y':
+        now = datetime.now()
+        if now.hour > 7:
             areaboss.run()
     except Exception as e:
         logger.error(f"Task areaboss finished")
@@ -148,7 +152,6 @@ for key, value in account_data.items():
         talisman.ui_goto(page_main)
         logger.error(f"Task talisman finished")
         
-
-    sleep(10+random.random()*5)
-    # input("Press Enter to continue...")
+    # sleep(10+random.random()*5)
+    input("Press Enter to continue...")
     

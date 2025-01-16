@@ -105,7 +105,7 @@
       "random_click_swipt_enable": true
     },
     "switch_soul": {
-      "enable": true,
+      "enable": false,
       "switch_group_team": "1,1",
       "enable_switch_by_name": false,
       "group_name": "日常",
