@@ -10,6 +10,8 @@ from tasks.Restart.script_task import ScriptTask as restart_task
 from tasks.DemonEncounter.script_task import ScriptTask as demon_task
 from tasks.DailyTrifles.script_task import ScriptTask as trifles_task
 from tasks.TalismanPass.script_task import ScriptTask as talisman_task
+from tasks.KekkaiUtilize.script_task import ScriptTask as kekkai_task
+from tasks.AreaBoss.script_task import ScriptTask as areaboss_task
 from tasks.MultiAccount.assets import MultiAccountAssets
 from tasks.GameUi.page import page_main
 from module.config.config import Config
@@ -64,7 +66,7 @@ os.system(f'copy {daliy_json} {target_json}')
 account_data = json.load(open("D:\\Software\\yys\\bot\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\resource\\account_info_temp.json", 'rb'))
 
 # try start app
-config = Config('daily_and')
+config = Config('multi_account')
 device = Device(config)
 restart_task = restart_task(config, device)
 restart_task.app_start()
@@ -76,6 +78,9 @@ account = multi_account.O_ACCOUNT
 for key, value in account_data.items():
     account.name = key
     account.keyword = value
+    
+    if "小号" in key:
+        continue
 
     ## switch account
     log_out = RuleClick((27,33,65,59), (27,33,65,59))
@@ -90,7 +95,7 @@ for key, value in account_data.items():
     sleep(random.random()*2+0.5)
     
     login.screenshot()
-    login.click(multi_account.I_PULL_DOWN_TAP)
+    login.ui_click_until_disappear(multi_account.I_PULL_DOWN_TAP)
     sleep(random.random()*2+0.5)
     
     switch_account_by_name(login, multi_account, account.keyword)
@@ -110,12 +115,40 @@ for key, value in account_data.items():
 
 ## load config and run task
     demon = demon_task(config, device)
-    # try:
-    #     demon.run()
-    # except Exception as e:
-    #     demon.ui_goto(page_main)
-    #     logger.error(f"Error in demon encounter: {e}")
+    try:
+        demon.run()
+    except Exception as e:
+        # demon.execute_boss()
+        logger.error(f"Task demon encounter finished")
+    
+    trifles = trifles_task(config, device)
+    try:
+        trifles.run()
+    except Exception as e:
+        logger.error(f"Task trifles finished")
+        
+    kekkai = kekkai_task(config, device)
+    try:
+        kekkai.run()
+    except Exception as e:
+        logger.error(f"Task kekkai finished")
+        
+    areaboss = areaboss_task(config, device)
+    try:
+        area = input("Do you want to run area boss? (y/n)")
+        if area == 'y':
+            areaboss.run()
+    except Exception as e:
+        logger.error(f"Task areaboss finished")
+        
+    talisman = talisman_task(config, device)
+    try:
+        talisman.run()
+    except Exception as e:
+        talisman.ui_goto(page_main)
+        logger.error(f"Task talisman finished")
+        
 
-    # sleep(30)
-    input("Press Enter to continue...")
+    sleep(10+random.random()*5)
+    # input("Press Enter to continue...")
     
