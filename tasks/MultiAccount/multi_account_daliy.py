@@ -111,25 +111,26 @@ for key, value in account_data.items():
     account.name = key
     account.keyword = value
     
-    if "小号" not in key:
-        continue
+    # if "小号" not in key:
+    #     continue
 
     ## switch account
     switch_account()
 
     ## load config and run task
-    demon = demon_task(config, device)
-    try:
-        demon.run()
-    except Exception as e:
-        # demon.execute_boss()
-        logger.error(f"Task demon encounter finished")
+    # demon = demon_task(config, device)
+    # try:
+    #     demon.run()
+    # except Exception as e:
+    #     demon.ui_goto(page_main)
+    #     # demon.execute_boss()
+    #     logger.error(f"Task demon encounter finished")
     
-    trifles = trifles_task(config, device)
-    try:
-        trifles.run()
-    except Exception as e:
-        logger.error(f"Task trifles finished")
+    # trifles = trifles_task(config, device)
+    # try:
+    #     trifles.run()
+    # except Exception as e:
+    #     logger.error(f"Task trifles finished")
         
     kekkai = kekkai_task(config, device)
     try:
@@ -152,6 +153,6 @@ for key, value in account_data.items():
         talisman.ui_goto(page_main)
         logger.error(f"Task talisman finished")
         
-    # sleep(10+random.random()*5)
+    sleep(10+random.random()*5)
     input("Press Enter to continue...")
     
