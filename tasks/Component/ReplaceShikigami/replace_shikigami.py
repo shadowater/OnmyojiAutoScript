@@ -94,7 +94,7 @@ class ReplaceShikigami(BaseTask, ReplaceShikigamiAssets):
             if self.appear_then_click(self.I_U_CONFIRM_SMALL, interval=1.5):
                 continue
 
-            if self.click(click_match, interval=1.5):
+            if self.click(click_match, interval=4.0):
                 continue
             if self.click(_click_match[6], interval=4.5):
                 # 有的时候第七个格子被占用到寄养上去了
