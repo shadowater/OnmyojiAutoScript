@@ -7,7 +7,7 @@ from enum import Enum
 from cached_property import cached_property
 from datetime import datetime, timedelta
 
-
+from tasks.GameUi.page import page_main
 from module.logger import logger
 from module.exception import TaskEnd
 from module.base.timer import Timer
@@ -46,6 +46,7 @@ class ScriptTask(GameUi, GeneralBattle, DemonEncounterAssets, SwitchSoul):
         self.ui_goto(page_demon_encounter)
         self.execute_lantern()
         # self.execute_boss()
+        self.ui_goto(page_main)
 
         self.set_next_run(task='DemonEncounter', success=True, finish=False)
         raise TaskEnd('DemonEncounter')
