@@ -3,7 +3,7 @@
   "script": {
     "device": {
       "serial": "127.0.0.1:16384",
-      "handle": "安卓",
+      "handle": "multi",
       "emulatorinfo_path": "",
       "package_name": "com.netease.onmyoji.wyzymnqsd_cps",
       "screenshot_method": "ADB",
@@ -250,7 +250,7 @@
       "utilize_rule": "kaiko",
       "select_friend_list": "same_server",
       "shikigami_class": "MATERIAL",
-      "shikigami_order": 6,
+      "shikigami_order": 1,
       "guild_ap_enable": true,
       "guild_assets_enable": true,
       "box_ap_enable": true,
