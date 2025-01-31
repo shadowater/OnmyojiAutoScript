@@ -2,7 +2,7 @@
   "config_name": "multi_account",
   "script": {
     "device": {
-      "serial": "127.0.0.1:16384",
+      "serial": "127.0.0.1:16512",
       "handle": "multi",
       "emulatorinfo_path": "",
       "package_name": "com.netease.onmyoji.wyzymnqsd_cps",
