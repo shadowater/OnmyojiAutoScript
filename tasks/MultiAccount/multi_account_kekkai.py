@@ -52,14 +52,16 @@ for key, value in account_data.items():
     sa=SwitchAccount(config,device,toAccount)
     sa.switchAccount()
     
-    for cur_task in task_list:
-        try:
-            cur_task.run()
-        except Exception as e:
-            logger.error(f"Task {cur_task} finished")
-            
-    kekkaiactivation.ui_goto(page_main)
-    sleep(10+random.random()*5)
-    # input("Need human intervention...")
+    try:
+        for cur_task in task_list:
+            try:
+                cur_task.run()
+            except Exception as e:
+                logger.error(f"Task {cur_task} finished")
+                
+        kekkaiactivation.ui_goto(page_main)
+        sleep(10+random.random()*5)
+    except:
+        input("Need human intervention...")
     
 restart_task.app_stop()
