@@ -2,6 +2,9 @@ git remote set-url origin https://github.com/shadowater/OnmyojiAutoScript.git
 
 结界卡合成方案替换，御魂筛选强化方案替换
 
+goto team check team
+
+
 看一眼勾协和商店，抽卡，同心队喂饼，回归经验，祈愿，挂卡，一键祝福语，
 
 挂低级勾玉卡

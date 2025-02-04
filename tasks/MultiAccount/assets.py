@@ -11,31 +11,17 @@ class MultiAccountAssets:
 
 
 	# Image Rule Assets
-	# 用户中心 
-	I_USER_CENTER = RuleImage(roi_front=(222,447,60,60), roi_back=(207,434,85,85), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/uesr_center.png")
-	# 下拉选择 
-	I_PULL_DOWN_TAP = RuleImage(roi_front=(849,319,30,21), roi_back=(383,277,518,106), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/pull_down_tap.png")
-	# ios图标 
-	I_IOS = RuleImage(roi_front=(496,361,90,127), roi_back=(496,361,90,127), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/ios.png")
-	# android图标 
-	I_ANDROID = RuleImage(roi_front=(696,361,88,127), roi_back=(696,361,88,127), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/android.png")
-
-
-	# Ocr Rule Assets
-	# description 
-	O_SWITCH_ACCOUNT = RuleOcr(roi=(957,195,94,29), area=(937,181,135,57), mode="Single", method="Default", keyword="切换账号", name="switch_account")
-	# 账号列表分组 
-	O_ACCOUNT_GROUP_NAME = RuleOcr(roi=(377,276,523,329), area=(377,276,523,329), mode="Full", method="Default", keyword="", name="account_group_name")
-	# 账号识别 
-	O_ACCOUNT = RuleOcr(roi=(465,295,335,35), area=(383,277,518,106), mode="Single", method="Default", keyword="", name="account")
-	# 登录按钮 
-	O_LOGIN = RuleOcr(roi=(382,411,518,66), area=(382,411,518,66), mode="Single", method="Default", keyword="登录", name="login")
-
-
-	# Swipe Rule Assets
-	# 账号列表的向上滑动 
-	S_ACCOUNT_GROUP_SWIPE_UP = RuleSwipe(roi_front=(491,313,21,23), roi_back=(497,477,22,25), mode="default", name="account_group_swipe_up")
-	# 账号列表的向下滑动 
-	S_ACCOUNT_GROUP_SWIPE_DOWN = RuleSwipe(roi_front=(495,475,26,23), roi_back=(489,316,24,21), mode="default", name="account_group_swipe_down")
+	# 同心队中心 
+	I_TEAM_HOME = RuleImage(roi_front=(932,269,38,38), roi_back=(932,269,38,38), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/team_home.png")
+	# 一键寄存 
+	I_ONE_STEP_SOURCE = RuleImage(roi_front=(1186,472,72,142), roi_back=(1186,472,72,142), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/one_step_source.png")
+	# 集结 
+	I_UNION = RuleImage(roi_front=(1095,625,86,59), roi_back=(1095,625,86,59), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/union.png")
+	# 御魂副本集结 
+	I_YUHUN_UNION = RuleImage(roi_front=(415,317,454,51), roi_back=(415,317,454,51), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/yuhun_union.png")
+	# 组队 
+	I_MISSION = RuleImage(roi_front=(964,644,67,42), roi_back=(964,644,67,42), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/mission.png")
+	# 打开自动 
+	I_AUTO = RuleImage(roi_front=(263,649,18,18), roi_back=(263,649,18,18), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/auto.png")
 
 

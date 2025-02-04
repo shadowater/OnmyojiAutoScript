@@ -1,38 +1,56 @@
 [
   {
-    "itemName": "user_center",
-    "imageName": "uesr_center.png",
-    "roiFront": "222,447,60,60",
-    "roiBack": "207,434,85,85",
+    "itemName": "team_home",
+    "imageName": "team_home.png",
+    "roiFront": "932,269,38,38",
+    "roiBack": "932,269,38,38",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "用户中心"
+    "description": "同心队中心"
   },
   {
-    "itemName": "pull_down_tap",
-    "imageName": "pull_down_tap.png",
-    "roiFront": "849,319,30,21",
-    "roiBack": "383,277,518,106",
+    "itemName": "one_step_source",
+    "imageName": "one_step_source.png",
+    "roiFront": "1186,472,72,142",
+    "roiBack": "1186,472,72,142",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "下拉选择"
+    "description": "一键寄存"
   },
   {
-    "itemName": "ios",
-    "imageName": "ios.png",
-    "roiFront": "496,361,90,127",
-    "roiBack": "496,361,90,127",
+    "itemName": "union",
+    "imageName": "union.png",
+    "roiFront": "1095,625,86,59",
+    "roiBack": "1095,625,86,59",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "ios图标"
+    "description": "集结"
   },
   {
-    "itemName": "android",
-    "imageName": "android.png",
-    "roiFront": "696,361,88,127",
-    "roiBack": "696,361,88,127",
+    "itemName": "yuhun_union",
+    "imageName": "yuhun_union.png",
+    "roiFront": "415,317,454,51",
+    "roiBack": "415,317,454,51",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "android图标"
+    "description": "御魂副本集结"
+  },
+  {
+    "itemName": "mission",
+    "imageName": "mission.png",
+    "roiFront": "964,644,67,42",
+    "roiBack": "964,644,67,42",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "组队"
+  },
+  {
+    "itemName": "auto",
+    "imageName": "auto.png",
+    "roiFront": "263,649,18,18",
+    "roiBack": "263,649,18,18",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "打开自动"
   }
 ]
