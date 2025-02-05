@@ -94,7 +94,7 @@ restart_task = restart_task(config, device)
 login = login_task(config, device)
 multi_account = MultiAccountAssets()
 
-# demon = demon_task(config, device)
+demon = demon_task(config, device)
 # trifles = trifles_task(config, device)
 # areaboss = areaboss_task(config, device)
 # talisman = talisman_task(config, device)
@@ -106,52 +106,51 @@ continue_flag = True
 
 
 # add_team_source(demon)
-connect_team_30(orochi)
+# connect_team_30(orochi)
 
 # task_list = [task_list[ii] for ii in range(len(task_list)) if ii in run_task_indices]
-# for key, value in account_data.items():
-#     # continue
-#     account.name = key
-#     account.keyword = value
-    
-#     try:
-#         ## switch account
-#         and_or_ios = True if "and" in key else False
-#         character = key.split("#")[-1]
+for key, value in account_data.items():
+    # continue
+
+    try:
+        ## switch account
+        and_or_ios = True if "and" in key else False
+        character = key.split("#")[-1]
         
-#         toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
-#                                 character=character, svr="孤高之心")
-#         sa=SwitchAccount(config,device,toAccount)
-#         sa.switchAccount()
+        toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
+                                character=character, svr="孤高之心")
+        sa=SwitchAccount(config,device,toAccount)
+        sa.switchAccount()
 
-#         lantern_task()
+        # lantern_task()
                 
-#         ## run task 
-#         for cur_task in task_list:
-#             try:
-#                 cur_task.run()
-#             except Exception as e:
-#                 logger.error(f"Task {cur_task} finished")
-                
-#         if demon.ui_get_current_page() != page_main:
-#             demon.ui_goto(page_main)
+        # ## run task 
+        # for cur_task in task_list:
+        #     try:
+        #         cur_task.run()
+        #     except Exception as e:
+        #         logger.error(f"Task {cur_task} finished")
+        add_team_source(demon)        
+        
+        if demon.ui_get_current_page() != page_main:
+            demon.ui_goto(page_main)
 
-#         # 截个图，看看勾协和蓝屏黑蛋
-#         # value = value.replace("*", "x")
-#         # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png"):
-#         #     screenshot_wantedquests()
-#         # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png"):
-#         #     screenshot_mysteryshop()
+        # 截个图，看看勾协和蓝屏黑蛋
+        # value = value.replace("*", "x")
+        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png"):
+        #     screenshot_wantedquests()
+        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png"):
+        #     screenshot_mysteryshop()
             
-#     except Exception as e:
-#         logger.error(f"Account {key} failed")
-#         continue_flag = True
-#         input("Need human intervention...")
+    except Exception as e:
+        logger.error(f"Account {key} failed")
+        continue_flag = True
+        input("Need human intervention...")
 
-#     # 下一个账号
-#     if continue_flag:
-#         sleep(10+random.random()*5)
-#     else:
-#         input("Press Enter to continue...")
+    # 下一个账号
+    if continue_flag:
+        sleep(10+random.random()*5)
+    else:
+        input("Press Enter to continue...")
         
-# restart_task.app_stop()
+restart_task.app_stop()
