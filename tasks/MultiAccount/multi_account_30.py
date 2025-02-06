@@ -46,7 +46,7 @@ def add_team_source(cur_task):
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
     
-def connect_team_30(cur_task: orochi_task):
+def connect_team_30(cur_task: orochi_task, switch_out=False):
     # 主页主队，同心队, 集结，御魂副本集结，副本， 创建队伍，开加成，开自动，run，取消，退出组队，回到主页
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
@@ -63,6 +63,14 @@ def connect_team_30(cur_task: orochi_task):
     cur_task.create_room()
     cur_task.ensure_private()
     cur_task.create_ensure()
+
+    # 切换出战阴阳师
+    if switch_out:
+        switch_out = RuleClick((600,570,100,25), (600,570,100,25))
+        sleep(random.random()+1)
+        cur_task.click(switch_out)
+
+    input("first test, press enter to continue...")
 
     cur_task.ui_click_until_disappear(MultiAccountAssets.I_AUTO)
     
@@ -94,21 +102,8 @@ restart_task = restart_task(config, device)
 login = login_task(config, device)
 multi_account = MultiAccountAssets()
 
-demon = demon_task(config, device)
-# trifles = trifles_task(config, device)
-# areaboss = areaboss_task(config, device)
-# talisman = talisman_task(config, device)
 orochi = orochi_task(config, device)
 
-# task_list = [trifles, areaboss, talisman]
-run_task_indices = []
-continue_flag = True
-
-
-# add_team_source(demon)
-# connect_team_30(orochi)
-
-# task_list = [task_list[ii] for ii in range(len(task_list)) if ii in run_task_indices]
 for key, value in account_data.items():
     # continue
 
@@ -122,35 +117,24 @@ for key, value in account_data.items():
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
-        # lantern_task()
-                
-        # ## run task 
-        # for cur_task in task_list:
-        #     try:
-        #         cur_task.run()
-        #     except Exception as e:
-        #         logger.error(f"Task {cur_task} finished")
-        add_team_source(demon)        
+        add_team_source(orochi)        
         
-        if demon.ui_get_current_page() != page_main:
-            demon.ui_goto(page_main)
+        if orochi.ui_get_current_page() != page_main:
+            orochi.ui_goto(page_main)
 
-        # 截个图，看看勾协和蓝屏黑蛋
-        # value = value.replace("*", "x")
-        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png"):
-        #     screenshot_wantedquests()
-        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png"):
-        #     screenshot_mysteryshop()
-            
+        if "队长" in key:
+            if "月哥" in key:
+                connect_team_30(orochi, switch_out=True)
+            else:
+                connect_team_30(orochi)
+
     except Exception as e:
         logger.error(f"Account {key} failed")
         continue_flag = True
         input("Need human intervention...")
 
     # 下一个账号
-    if continue_flag:
-        sleep(10+random.random()*5)
-    else:
-        input("Press Enter to continue...")
+
+    sleep(10+random.random()*5)
         
 restart_task.app_stop()

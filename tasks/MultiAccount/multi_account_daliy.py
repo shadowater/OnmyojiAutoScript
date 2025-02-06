@@ -121,7 +121,6 @@ restart_task.app_start()
 # loop in multi account
 login = login_task(config, device)
 multi_account = MultiAccountAssets()
-account = multi_account.O_ACCOUNT
 
 demon = demon_task(config, device)
 trifles = trifles_task(config, device)
@@ -135,8 +134,6 @@ continue_flag = True
 task_list = [task_list[ii] for ii in range(len(task_list)) if ii in run_task_indices]
 for key, value in account_data.items():
     # continue
-    account.name = key
-    account.keyword = value
     
     try:
         ## switch account
