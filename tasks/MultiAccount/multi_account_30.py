@@ -7,7 +7,7 @@ from PIL import Image
 from datetime import datetime
 
 import sys
-sys.path.append("D:\\softwa\\yys\\OnmyojiAutoScript-easy-install")
+sys.path.append("D:\\software\\yys\\OnmyojiAutoScript")
 from tasks.Restart.login import LoginHandler as login_task
 from tasks.Restart.script_task import ScriptTask as restart_task
 from tasks.DemonEncounter.script_task import ScriptTask as demon_task
@@ -87,10 +87,10 @@ def connect_team_30(cur_task: orochi_task, switch_out=False):
         cur_task.ui_goto(page_main)
     
 
-daliy_json = "D:\\softwa\\yys\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\multi_daily_temp.json"
-target_json = "D:\\softwa\\yys\\OnmyojiAutoScript-easy-install\\config\\multi_account.json"
+daliy_json = "D:\\software\\yys\\OnmyojiAutoScript\\tasks\\MultiAccount\\multi_daily_temp.json"
+target_json = "D:\\software\\yys\\OnmyojiAutoScript\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open("D:\\softwa\\yys\\OnmyojiAutoScript-easy-install\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
+account_data = json.load(open("D:\\software\\yys\\OnmyojiAutoScript\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
 
 # try start app
 config = Config('multi_account')
