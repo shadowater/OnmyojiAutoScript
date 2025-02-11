@@ -250,7 +250,7 @@ class LoginHandler(BaseTask, RestartAssets):
                     continue
                 if ((self.appear(self.I_HARVEST_MAIL) or self.appear(self.I_HARVEST_MAIL_COPY))
                         and not self.appear(self.I_LOGIN_RED_CLOSE)):
-                    self.click(self.I_HARVEST_MAIL, interval=2)
+                    self.click(self.I_HARVEST_MAIL, interval=2.2)
                     self.wait_until_appear(self.I_HARVEST_MAIL_ALL, wait_time=2)
                     timer_harvest.reset()
                     continue
