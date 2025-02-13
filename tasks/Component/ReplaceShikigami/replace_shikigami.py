@@ -96,10 +96,10 @@ class ReplaceShikigami(BaseTask, ReplaceShikigamiAssets):
 
             if self.click(click_match, interval=1.5):
                 continue
-            if self.click(_click_match[6], interval=4.5):
-                # 有的时候第七个格子被占用到寄养上去了
-                # 导致一直无法选上
-                continue
+            # if self.click(_click_match[6], interval=4.5):
+            #     # 有的时候第七个格子被占用到寄养上去了
+            #     # 导致一直无法选上
+            #     continue
             if self.appear_then_click(self.I_U_CIRCLE_ALTERNATE, interval=2.5):
                 self.appear_then_click(self.I_U_CONFIRM_ALTERNATE, interval=1.5)
                 continue
