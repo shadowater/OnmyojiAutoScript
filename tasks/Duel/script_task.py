@@ -147,7 +147,7 @@ class ScriptTask(GameUi, GeneralBattle, DuelAssets):
             self.screenshot()
             if self.appear(self.I_D_AUTO_ENTRY):
                 # 出现自动上阵
-                self.ui_click_until_disappear(self.I_D_AUTO_ENTRY)
+                self.ui_click_until_disappear(self.I_D_AUTO_ENTRY, interval=2)
                 logger.info('Duel auto entry')
                 self.device.stuck_record_clear()
                 self.device.stuck_record_add('BATTLE_STATUS_S')
@@ -165,7 +165,7 @@ class ScriptTask(GameUi, GeneralBattle, DuelAssets):
             self.screenshot()
             if self.ocr_appear(self.O_D_AUTO, interval=0.4):
                 break
-            if self.ocr_appear_click(self.O_D_HAND, interval=1):
+            if self.ocr_appear_click(self.O_D_HAND, interval=2):
                 continue
             # 如果对方直接秒退，那自己就是赢的
             if self.appear(self.I_D_VICTORY):
