@@ -7,7 +7,9 @@ from PIL import Image
 from datetime import datetime
 
 import sys
-sys.path.append("D:\\software\\yys\\OnmyojiAutoScript")
+cur_path = os.path.abspath(__file__)
+oas_path = cur_path.split("tasks")[0]
+sys.path.append(oas_path)
 from tasks.Restart.login import LoginHandler as login_task
 from tasks.Restart.script_task import ScriptTask as restart_task
 from tasks.DemonEncounter.script_task import ScriptTask as demon_task
@@ -64,21 +66,11 @@ def connect_team_30(cur_task: orochi_task, switch_out=False):
     cur_task.ensure_private()
     cur_task.create_ensure()
 
-    # 切换出战阴阳师
-    if switch_out:
-        switch_out = RuleClick((600,570,100,25), (600,570,100,25))
-        sleep(random.random()+1)
-        cur_task.click(switch_out)
+    # input("first test, press enter to continue...")
 
-    input("first test, press enter to continue...")
-
-    cur_task.ui_click_until_disappear(MultiAccountAssets.I_AUTO)
+    cur_task.ui_click_until_disappear(MultiAccountAssets.I_AUTO, 3)
     
-    while 1:
-        cur_task.screenshot()
-        if cur_task.appear(GeneralInviteAssets.I_GI_CANCEL):
-            break
-        sleep(1)
+    cur_task.wait_until_appear(GeneralInviteAssets.I_GI_CANCEL, wait_time=1800)
         
     cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_CANCEL, 1.5)
     cur_task.exit_room()
@@ -87,10 +79,10 @@ def connect_team_30(cur_task: orochi_task, switch_out=False):
         cur_task.ui_goto(page_main)
     
 
-daliy_json = "D:\\software\\yys\\OnmyojiAutoScript\\tasks\\MultiAccount\\multi_daily_temp.json"
-target_json = "D:\\software\\yys\\OnmyojiAutoScript\\config\\multi_account.json"
+daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
+target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open("D:\\software\\yys\\OnmyojiAutoScript\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
+account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
 
 # try start app
 config = Config('multi_account')
@@ -106,6 +98,9 @@ orochi = orochi_task(config, device)
 
 for key, value in account_data.items():
     # continue
+    
+    if "队长" not in key:
+        continue
 
     try:
         ## switch account
@@ -117,16 +112,11 @@ for key, value in account_data.items():
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
-        add_team_source(orochi)        
+        # add_team_source(orochi)        
         
-        if orochi.ui_get_current_page() != page_main:
-            orochi.ui_goto(page_main)
-
-        if "队长" in key:
-            if "月哥" in key:
-                connect_team_30(orochi, switch_out=True)
-            else:
-                connect_team_30(orochi)
+        # if orochi.ui_get_current_page() != page_main:
+        #     orochi.ui_goto(page_main)
+        connect_team_30(orochi)
 
     except Exception as e:
         logger.error(f"Account {key} failed")
@@ -136,5 +126,5 @@ for key, value in account_data.items():
     # 下一个账号
 
     sleep(10+random.random()*5)
-        
+               
 restart_task.app_stop()
