@@ -1,12 +1,11 @@
 git remote set-url origin https://github.com/shadowater/OnmyojiAutoScript.git
 
-结界卡合成方案替换，御魂筛选强化方案替换
+寄养挂不上问题，登陆领邮件问题
 
-goto team check team
+任务失败时记录存档点
 
-看一眼勾协和商店，抽卡，同心队喂饼，回归经验，祈愿，挂卡，一键祝福语，
+协战15次，截图悬赏和商店，挂卡和寄养对比勾玉数量
 
-挂低级勾玉卡
 
 EiICAgITMwICAhREAgICFhECAgIVEQICAjMzDP4fDP4fDP4fNEQM/h8M/h8M/h82EQT+Hxz+Hxz+HzYSBP4fHP4fHP4fNiIE/h8c/h8c/h81EQT+Hxz+Hxz+HzUSBP4fHP4fHP4fNSIE/h8c/h8c/h8REQICAhImAgICEiUCAgI=|MSDljYfmmJ8mMiDljYfmmJ8mMyDljYfmmJ8mNCDlj5jlvIImNSDlj5jlvIImNiDljYfmmJ8mNyDljYfmmJ8mOCDlj5jlvIImOSDlj5jlvIImMTAg5Y+Y5byCJjExIOWPmOW8giYxMiDlj5jlvIImMTMg5Y+Y5byCJjE0IOiCneS9rOeJueS+myDljYfmmJ8m5pa55qGIMTUm5pa55qGIMTY=|6ZWc5b2x5pig54Wn##如果想要使用此方案，可将方案码复制到剪贴板，然后在「结界卡」的「合成方案」中选择「导入方案码」进行粘贴。
 
