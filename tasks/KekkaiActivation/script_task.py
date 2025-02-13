@@ -135,8 +135,11 @@ class ScriptTask(KU, KekkaiActivationAssets):
             # 如果是什么都没有，那就是可以开始挂卡了
             if not card_status and not card_effect:
                 logger.info('Card is not selected also not using')
-                self.screening_card(_config.card_rule)
-
+                state = self.screening_card(_config.card_rule)
+                if state == "no card":
+                    logger.warning('No card found')
+                    self.set_next_run("KekkaiActivation", success=False, finish=True)
+                    break
 
 
 
@@ -293,6 +296,10 @@ class ScriptTask(KU, KekkaiActivationAssets):
             self.swipe(self.S_CARDS_SWIPE, interval=0.9)
             swipe_count += 1
             time.sleep(2)
+
+        if current_best is None:
+            logger.warning('No card found')
+            return "no card"
 
     def _image_convert_card(self, target: RuleImage) -> CardClass:
         """
