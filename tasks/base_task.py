@@ -222,6 +222,7 @@ class BaseTask(GlobalGameAssets, CostumeBase):
             wait_timer = Timer(wait_time)
             wait_timer.start()
         while 1:
+            self.device.stuck_record_clear()
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
