@@ -30,17 +30,17 @@ account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_te
 config = Config('multi_account')
 device = Device(config)
 restart_task = restart_task(config, device)
-# restart_task.app_start()
+restart_task.app_start()
 
 # loop in multi account
 login = login_task(config, device)
 multi_account = MultiAccountAssets()
 
 
-kekkaiactivation = kekkaiactivation_task(config, device)
-kekkaiutilize = kekkaiutilize_task(config, device)
-task_list = [kekkaiactivation, kekkaiutilize]
-kekkaiutilize.run()
+# kekkaiactivation = kekkaiactivation_task(config, device)
+# kekkaiutilize = kekkaiutilize_task(config, device)
+# task_list = [kekkaiactivation, kekkaiutilize]
+# kekkaiutilize.run()
 
 # for key, value in account_data.items():
 #     # continue
