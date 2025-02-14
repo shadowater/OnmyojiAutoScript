@@ -72,6 +72,15 @@
     "description": "description"
   },
   {
+    "itemName": "main_goto_mail",
+    "imageName": "page_main_goto_mail.png",
+    "roiFront": "1136,39,38,19",
+    "roiBack": "1130,30,58,49",
+    "method": "Template matching",
+    "threshold": 0.7,
+    "description": "description"
+  },
+  {
     "itemName": "check_records",
     "imageName": "page_check_records.png",
     "roiFront": "269,71,55,50",
