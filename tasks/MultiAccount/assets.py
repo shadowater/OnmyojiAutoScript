@@ -23,5 +23,13 @@ class MultiAccountAssets:
 	I_MISSION = RuleImage(roi_front=(964,644,67,42), roi_back=(964,644,67,42), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/mission.png")
 	# 打开自动 
 	I_AUTO = RuleImage(roi_front=(263,649,18,18), roi_back=(263,649,18,18), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/auto.png")
+	# 公会信息 
+	I_GUILD_INFO = RuleImage(roi_front=(1172,627,65,60), roi_back=(1172,627,65,60), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/guild_info.png")
+	# 进入捐赠页面 
+	I_DONATE = RuleImage(roi_front=(265,491,36,36), roi_back=(265,491,36,36), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/donate.png")
+	# 增加捐赠勾玉数量 
+	I_DONATE_ADD = RuleImage(roi_front=(788,290,48,36), roi_back=(788,290,48,36), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/donate_add.png")
+	# 确定捐赠 
+	I_DONATE_SURE = RuleImage(roi_front=(561,521,157,53), roi_back=(561,521,157,53), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/donate_sure.png")
 
 

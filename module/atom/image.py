@@ -10,6 +10,7 @@ from pathlib import Path
 from module.base.decorator import cached_property
 from module.logger import logger
 from module.base.utils import is_approx_rectangle
+from toolkit.Lib import imp
 
 class RuleImage:
 
@@ -149,6 +150,16 @@ class RuleImage:
 
         source = self.corp(image)
         mat = self.image
+
+        # save source and mat
+        from PIL import Image
+        img = Image.fromarray(source, mode='RGB')
+        img.save('.\log\source.png')
+        img = Image.fromarray(mat, mode='RGB')
+        img.save('.\log\mat.png')
+        
+
+
 
         if mat is None or mat.shape[0] == 0 or mat.shape[1] == 0:
             logger.error(f"Template image is invalid: {mat.shape}") #检测模板尺寸，不合法则不进行匹配，避免两次截图画面完全相同造成模板不合法

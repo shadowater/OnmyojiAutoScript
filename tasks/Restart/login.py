@@ -8,7 +8,7 @@ from module.logger import logger
 from tasks.Restart.assets import RestartAssets
 from tasks.base_task import BaseTask
 from tasks.GameUi.assets import GameUiAssets
-
+from tasks.Component.GeneralInvite.assets import GeneralInviteAssets
 
 class LoginHandler(BaseTask, RestartAssets):
     character: str
@@ -180,6 +180,11 @@ class LoginHandler(BaseTask, RestartAssets):
                     logger.info('Close zidu')
                 continue
 
+
+            # 邮件插画取消启用
+            if self.appear_then_click(GeneralInviteAssets.I_GI_CANCEL, interval=1.5):
+                timer_harvest.reset()
+                continue
             # 勾玉
             if self.appear_then_click(self.I_HARVEST_JADE, interval=1.5):
                 timer_harvest.reset()
