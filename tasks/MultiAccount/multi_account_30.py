@@ -48,7 +48,7 @@ def add_team_source(cur_task):
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
     
-def connect_team_30(cur_task: orochi_task, switch_out=False):
+def connect_team_30(cur_task: orochi_task):
     # 主页主队，同心队, 集结，御魂副本集结，副本， 创建队伍，开加成，开自动，run，取消，退出组队，回到主页
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
@@ -66,12 +66,14 @@ def connect_team_30(cur_task: orochi_task, switch_out=False):
     cur_task.ensure_private()
     cur_task.create_ensure()
 
-    # input("first test, press enter to continue...")
-
     cur_task.ui_click_until_disappear(MultiAccountAssets.I_AUTO, 3)
-    
+
+    # 
+    cur_task.device.stuck_timer_long = Timer(1800, count=1800).start()
+    cur_task.device.stuck_record_add('BATTLE_STATUS_S')    
     cur_task.wait_until_appear(GeneralInviteAssets.I_GI_CANCEL, wait_time=1800)
-        
+    cur_task.device.stuck_record_clear()
+    
     cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_CANCEL, 1.5)
     cur_task.exit_room()
     
@@ -88,7 +90,7 @@ account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_te
 config = Config('multi_account')
 device = Device(config)
 restart_task = restart_task(config, device)
-# restart_task.app_start()
+restart_task.app_start()
 
 # loop in multi account
 login = login_task(config, device)
@@ -96,8 +98,19 @@ multi_account = MultiAccountAssets()
 
 orochi = orochi_task(config, device)
 
+
+account_file = oas_path + "\\tasks\\MultiAccount\\cur_account.txt"
+with open(account_file, "r") as f:
+    cur_account = f.read()
+continue_flag = True
+
+
 for key, value in account_data.items():
-    # continue
+    
+    # if value == cur_account:
+    #     continue_flag = False
+    # if continue_flag:
+    #     continue
     
     if "队长" not in key:
         continue
@@ -119,12 +132,10 @@ for key, value in account_data.items():
         connect_team_30(orochi)
 
     except Exception as e:
-        logger.error(f"Account {key} failed")
-        continue_flag = True
-        input("Need human intervention...")
-
-    # 下一个账号
-
-    sleep(10+random.random()*5)
+        with open(account_file, "w") as f:
+            f.write(value)
+        break
+        
+    sleep(5+random.random()*5)
                
 restart_task.app_stop()

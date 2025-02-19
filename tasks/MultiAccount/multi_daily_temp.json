@@ -45,7 +45,7 @@
       "enable_jade": true,
       "enable_sign": true,
       "enable_sign_999": true,
-      "enable_mail": false,
+      "enable_mail": true,
       "enable_soul": true,
       "enable_ap": true
     },
@@ -403,14 +403,14 @@
       "buff_exp_100_click": true,
       "user_status": "alone",
       "limit_time": "01:30:00",
-      "minions_cnt": 1000,
-      "exploration_level": "第二十八章",
+      "minions_cnt": 14,
+      "exploration_level": "第十三章",
       "auto_rotate": "不",
       "choose_rarity": "N卡",
       "up_type": "up_daruma"
     },
     "scrolls": {
-      "scrolls_enable": true,
+      "scrolls_enable": false,
       "scrolls_cd": "01 00:00:00",
       "scrolls_threshold": 27
     },
@@ -429,7 +429,7 @@
       "random_click_swipt_enable": true
     },
     "switch_soul_config": {
-      "enable": true,
+      "enable": false,
       "switch_group_team": "2,3",
       "enable_switch_by_name": false,
       "group_name": "",

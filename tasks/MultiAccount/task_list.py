@@ -1,10 +1,20 @@
+import os
 import sys
-sys.path.append("D:\\software\\yys\\OnmyojiAutoScript")
+from PIL import Image
+from time import sleep
+from numpy import random
+from datetime import datetime
+cur_path = os.path.abspath(__file__)
+oas_path = cur_path.split("tasks")[0]
+sys.path.append(oas_path)
 from module.logger import logger
 from module.base.timer import Timer
 from tasks.DemonEncounter.script_task import ScriptTask
 from tasks.GameUi.page import page_demon_encounter, page_main
-
+from tasks.WantedQuests.assets import WantedQuestsAssets
+from tasks.WantedQuests.assets import WantedQuestsAssets
+from tasks.GlobalGame.assets import GlobalGameAssets
+from tasks.MysteryShop.assets import MysteryShopAssets
 
 class lantern_task(ScriptTask):
 
@@ -49,110 +59,51 @@ class lantern_task(ScriptTask):
         self.ui_goto(page_demon_encounter)
         
 
-class screenshot_wantedquests():
-    pass
+def screenshot_wantedquests(cur_task, key, value, oas_path):
 
-class screenshot_mysteryshop():
-    pass
-
-# def screenshot_wantedquests():
-
-#     while 1:
-#         demon.screenshot()
-#         if demon.appear(WantedQuestsAssets.I_TRACE_ENABLE) or demon.appear(WantedQuestsAssets.I_TRACE_DISABLE):
-#             break
-#         if demon.appear_then_click(WantedQuestsAssets.I_WQ_SEAL, interval=1):
-#             continue
+    while 1:
+        cur_task.screenshot()
+        if cur_task.appear(WantedQuestsAssets.I_TRACE_ENABLE) or cur_task.appear(WantedQuestsAssets.I_TRACE_DISABLE):
+            break
+        if cur_task.appear_then_click(WantedQuestsAssets.I_WQ_SEAL, interval=3):
+            continue
+        if cur_task.appear_then_click(WantedQuestsAssets.I_WQ_DONE, interval=3):
+            continue
         
-#     demon.screenshot() 
-#     img = Image.fromarray(demon.device.image, mode='RGB')
-#     img.save(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png")
-#     demon.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED)
-#     sleep(random.random()+0.5)
+    cur_task.screenshot() 
+    img = Image.fromarray(cur_task.device.image, mode='RGB')
+    img.save(oas_path.split("OnmyojiAutoScript")[0] + f"{key}_{value}_wantedquests.png")
+    cur_task.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED)
+    sleep(random.random()+0.5)
 
-# def screenshot_mysteryshop():
-#     day_of_week = datetime.now().weekday()
-#     if day_of_week != 2 and day_of_week != 5:
-#         logger.warning('Today is not MysteryShop day')
-#     else:
-#         demon.ui_click(demon.I_MAIN_GOTO_MALL ,demon.I_BACK_Y)
-#         sleep(random.random()+0.5)
-#         demon.ui_click(demon.I_BACK_Y ,demon.I_BACK_BLUE)
-#         sleep(random.random()+0.5)
-#         demon.ui_click(demon.I_BACK_Y , MysteryShopAssets.I_ME_ENTER)
-#         sleep(random.random()+0.5)
-#         demon.ui_click(MysteryShopAssets.I_ME_ENTER, MysteryShopAssets.I_MS_SHARE)
-#         logger.info('Enter MysteryShop')
+def screenshot_mysteryshop(cur_task, key, value, oas_path):
+    day_of_week = datetime.now().weekday()
+    if day_of_week != 2 and day_of_week != 5:
+        logger.warning('Today is not MysteryShop day')
+    else:
+        cur_task.ui_click(cur_task.I_MAIN_GOTO_MALL ,cur_task.I_BACK_Y)
+        sleep(random.random()+0.5)
+        cur_task.ui_click(cur_task.I_BACK_Y ,cur_task.I_BACK_BLUE)
+        sleep(random.random()+0.5)
+        cur_task.ui_click(cur_task.I_BACK_Y , MysteryShopAssets.I_ME_ENTER)
+        sleep(random.random()+0.5)
+        cur_task.ui_click(MysteryShopAssets.I_ME_ENTER, MysteryShopAssets.I_MS_SHARE)
+        logger.info('Enter MysteryShop')
             
-#         # refresh = RuleClick((1199,533,55,54), (1199,533,55,54))
-#         # have_blue = demon.appear(MysteryShopAssets.I_MS_BLUE)
-#         # have_black = demon.appear(MysteryShopAssets.I_MS_BLACK)
-#         # if not have_blue and not have_black:
-#         #     demon.click(refresh)
-#         #     demon.click(kekkai.I_UI_CONFIRM_SAMLL)
+        # refresh = RuleClick((1199,533,55,54), (1199,533,55,54))
+        # have_blue = cur_task.appear(MysteryShopAssets.I_MS_BLUE)
+        # have_black = cur_task.appear(MysteryShopAssets.I_MS_BLACK)
+        # if not have_blue and not have_black:
+        #     cur_task.click(refresh)
+        #     cur_task.click(kekkai.I_UI_CONFIRM_SAMLL)
         
-#         demon.screenshot() 
-#         img = Image.fromarray(demon.device.image, mode='RGB')
-#         img.save(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png")
+        cur_task.screenshot() 
+        img = Image.fromarray(cur_task.device.image, mode='RGB')
+        img.save(oas_path.split("OnmyojiAutoScript")[0] + f"{key}_{value}_mysteryshop.png")
             
-#         sleep(random.random()+0.5)
-#         demon.ui_click(demon.I_BACK_Y ,demon.I_BACK_BLUE)
-#         sleep(random.random()+0.5)
-#         demon.ui_click(demon.I_BACK_BLUE ,demon.I_CHECK_MAIN)
+        sleep(random.random()+0.5)
+        cur_task.ui_click(cur_task.I_BACK_Y ,cur_task.I_BACK_BLUE)
+        sleep(random.random()+0.5)
+        cur_task.ui_click(cur_task.I_BACK_BLUE ,cur_task.I_CHECK_MAIN)
 
 
-# def add_team_source(cur_task):
-#     # 主页主队，同心队，同心队中心，一键寄存，确认，回到主页
-    
-#     if cur_task.ui_get_current_page() != page_main:
-#         cur_task.ui_goto(page_main)
-        
-#     cur_task.ui_click(cur_task.I_HOME_TEAM, cur_task.I_CHECK_TEAM, 1.5)
-#     cur_task.ui_click(cur_task.I_CHECK_TEAM, MultiAccountAssets.I_TEAM_HOME, 1.5)
-#     cur_task.ui_click(MultiAccountAssets.I_TEAM_HOME, MultiAccountAssets.I_ONE_STEP_SOURCE, 1.5)
-#     cur_task.ui_click(MultiAccountAssets.I_ONE_STEP_SOURCE, GeneralInviteAssets.I_GI_SURE, 1.5)
-#     cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_SURE, 1.5)
-    
-#     if cur_task.ui_get_current_page() != page_main:
-#         cur_task.ui_goto(page_main)
-    
-# def connect_team_30(cur_task: orochi_task, switch_out=False):
-#     # 主页主队，同心队, 集结，御魂副本集结，副本， 创建队伍，开加成，开自动，run，取消，退出组队，回到主页
-#     if cur_task.ui_get_current_page() != page_main:
-#         cur_task.ui_goto(page_main)
-#     [cur_task.I_HOME_TEAM, cur_task.I_CHECK_TEAM, MultiAccountAssets.I_UNION,
-#      MultiAccountAssets.I_YUHUN_UNION, MultiAccountAssets.I_MISSION, MultiAccountAssets.I_AUTO,
-#      GeneralInviteAssets.I_GI_CANCEL, ]
-    
-#     cur_task.ui_click(cur_task.I_HOME_TEAM, cur_task.I_CHECK_TEAM, 1.5)
-#     cur_task.ui_click(cur_task.I_CHECK_TEAM, MultiAccountAssets.I_UNION, 1.5)
-#     cur_task.ui_click(MultiAccountAssets.I_UNION, MultiAccountAssets.I_YUHUN_UNION, 1.5)
-#     cur_task.ui_click_until_disappear(MultiAccountAssets.I_YUHUN_UNION, 1.5)
-#     cur_task.ui_click_until_disappear(MultiAccountAssets.I_MISSION, 1.5)
-    
-#     cur_task.create_room()
-#     cur_task.ensure_private()
-#     cur_task.create_ensure()
-
-#     # 切换出战阴阳师
-#     if switch_out:
-#         switch_out = RuleClick((600,570,100,25), (600,570,100,25))
-#         sleep(random.random()+1)
-#         cur_task.click(switch_out)
-
-#     input("first test, press enter to continue...")
-
-#     cur_task.ui_click_until_disappear(MultiAccountAssets.I_AUTO)
-    
-#     while 1:
-#         cur_task.screenshot()
-#         if cur_task.appear(GeneralInviteAssets.I_GI_CANCEL):
-#             break
-#         sleep(1)
-        
-#     cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_CANCEL, 1.5)
-#     cur_task.exit_room()
-    
-#     if cur_task.ui_get_current_page() != page_main:
-#         cur_task.ui_goto(page_main)
-    
