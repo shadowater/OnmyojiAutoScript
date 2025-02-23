@@ -45,7 +45,7 @@ class ScriptTask(GameUi, GeneralBattle, DemonEncounterAssets, SwitchSoul):
             self.checkout_soul()
         self.ui_goto(page_demon_encounter)
         self.execute_lantern()
-        self.execute_boss()
+        # self.execute_boss()
 
         self.set_next_run(task='DemonEncounter', success=True, finish=False)
         raise TaskEnd('DemonEncounter')

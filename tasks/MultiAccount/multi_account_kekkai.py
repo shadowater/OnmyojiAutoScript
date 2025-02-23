@@ -35,7 +35,7 @@ kekkaiutilize = kekkaiutilize_task(config, device)
 task_list = [kekkaiactivation, kekkaiutilize]
 
 for key, value in account_data.items():
-    continue
+    # continue
     
     and_or_ios = True if "and" in key else False
     character = key.split("#")[-1]
@@ -57,7 +57,7 @@ for key, value in account_data.items():
 
         value = value.replace("*", "x")
         screenshot_wantedquests(kekkaiactivation, key, value, oas_path)
-        screenshot_mysteryshop(kekkaiactivation, key, value, oas_path)
+        # screenshot_mysteryshop(kekkaiactivation, key, value, oas_path)
                 
         sleep(5+random.random()*5)
     except:

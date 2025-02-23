@@ -75,6 +75,7 @@ def connect_team_30(cur_task: orochi_task):
     cur_task.device.stuck_record_clear()
     
     cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_CANCEL, 1.5)
+    sleep(random.random()+0.5)
     cur_task.exit_room()
     
     if cur_task.ui_get_current_page() != page_main:
@@ -85,6 +86,8 @@ daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
 account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
+
+# sleep(3600)
 
 # try start app
 config = Config('multi_account')
@@ -106,11 +109,13 @@ continue_flag = True
 
 
 for key, value in account_data.items():
-    
-    # if value == cur_account:
-    #     continue_flag = False
+    # continue
+
     # if continue_flag:
     #     continue
+    # if value == cur_account:
+    #     continue_flag = False
+    
     
     if "队长" not in key:
         continue
@@ -125,10 +130,6 @@ for key, value in account_data.items():
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
-        # add_team_source(orochi)        
-        
-        # if orochi.ui_get_current_page() != page_main:
-        #     orochi.ui_goto(page_main)
         connect_team_30(orochi)
 
     except Exception as e:
@@ -137,5 +138,6 @@ for key, value in account_data.items():
         break
         
     sleep(5+random.random()*5)
+               
                
 restart_task.app_stop()

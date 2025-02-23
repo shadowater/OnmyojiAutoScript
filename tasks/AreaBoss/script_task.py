@@ -492,13 +492,13 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AreaBossAssets):
         """
         检查时间是否正确，
         如果正确就继续
-        如果不在12:00之后，推迟到18:00
+        如果不在10:00之后，推迟到18:00
         :return:
         """
         now = datetime.now()
-        if now.hour < 12:
-            # 12点之前，推迟到当天的18点
-            logger.info('Before 12:00, wait to 18:00')
+        if now.hour < 10:
+            # 10点之前，推迟到当天的18点
+            logger.info('Before 10:00, wait to 18:00')
             target_time = datetime(now.year, now.month, now.day, 18, 00, 0)
             self.set_next_run(task='AreaBoss', success=False, finish=False, target=target_time)
             return False

@@ -167,10 +167,10 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
-continue_flag = True
+continue_flag = False
 
 task_list = [trifles, areaboss, talisman]
-run_task_indices = [0,1,2]
+run_task_indices = []
 
 
 
@@ -192,9 +192,9 @@ for key, value in account_data.items():
         sa.switchAccount()
 
 
-        add_team_source(demon)
-        donate_guild()
-        lantern_task()
+        # add_team_source(demon)
+        # donate_guild()
+        # lantern_task()-------
                 
         ## run task 
         for cur_task in task_list:
@@ -205,14 +205,6 @@ for key, value in account_data.items():
                 
         if demon.ui_get_current_page() != page_main:
             demon.ui_goto(page_main)
-
-
-
-
-        # 截个图，看看勾协和蓝屏黑蛋
-        # value = value.replace("*", "x")
-        # screenshot_wantedquests()
-        # screenshot_mysteryshop()
             
     except Exception as e:
         logger.error(f"Account {key} failed")
@@ -224,4 +216,4 @@ for key, value in account_data.items():
     else:
         input("Press Enter to continue...")
         
-# restart_task.app_stop()
+restart_task.app_stop()
