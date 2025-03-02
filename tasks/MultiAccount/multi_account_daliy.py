@@ -167,10 +167,10 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
-continue_flag = False
+continue_flag =True
 
 task_list = [trifles, areaboss, talisman]
-run_task_indices = []
+run_task_indices = [0,1,2]
 
 
 
@@ -192,9 +192,9 @@ for key, value in account_data.items():
         sa.switchAccount()
 
 
-        # add_team_source(demon)
-        # donate_guild()
-        # lantern_task()-------
+        add_team_source(demon)
+        donate_guild()
+        lantern_task()
                 
         ## run task 
         for cur_task in task_list:

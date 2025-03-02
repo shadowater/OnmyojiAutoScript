@@ -711,13 +711,13 @@
       "float_time": "00:00:00"
     },
     "general_climb": {
-      "limit_time": "00:30:00",
-      "limit_count": 46,
-      "ap_game_max": 300,
-      "ap_mode": "ap_activity",
+      "limit_time": "01:30:00",
+      "limit_count": 200,
+      "ap_game_max": 200,
+      "ap_mode": "ap_game",
       "activity_toggle": false,
-      "active_souls_clean": false,
-      "random_sleep": false
+      "active_souls_clean": true,
+      "random_sleep": true
     },
     "general_battle": {
       "lock_team_enable": true,
