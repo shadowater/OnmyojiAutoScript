@@ -1,12 +1,14 @@
 git remote set-url origin https://github.com/shadowater/OnmyojiAutoScript.git
 
-结界卡合成方案替换，御魂筛选强化方案替换
+任务失败时记录存档点
 
-goto team check team
+协战15次，截图悬赏和商店
 
-看一眼勾协和商店，抽卡，同心队喂饼，回归经验，祈愿，挂卡，一键祝福语，
+每周商店
 
-挂低级勾玉卡
+寮捐献勾玉
+
+挂卡和寄养对比勾玉数量
 
 EiICAgITMwICAhREAgICFhECAgIVEQICAjMzDP4fDP4fDP4fNEQM/h8M/h8M/h82EQT+Hxz+Hxz+HzYSBP4fHP4fHP4fNiIE/h8c/h8c/h81EQT+Hxz+Hxz+HzUSBP4fHP4fHP4fNSIE/h8c/h8c/h8REQICAhImAgICEiUCAgI=|MSDljYfmmJ8mMiDljYfmmJ8mMyDljYfmmJ8mNCDlj5jlvIImNSDlj5jlvIImNiDljYfmmJ8mNyDljYfmmJ8mOCDlj5jlvIImOSDlj5jlvIImMTAg5Y+Y5byCJjExIOWPmOW8giYxMiDlj5jlvIImMTMg5Y+Y5byCJjE0IOiCneS9rOeJueS+myDljYfmmJ8m5pa55qGIMTUm5pa55qGIMTY=|6ZWc5b2x5pig54Wn##如果想要使用此方案，可将方案码复制到剪贴板，然后在「结界卡」的「合成方案」中选择「导入方案码」进行粘贴。
 
@@ -32,3 +34,25 @@ EiICAgITMwICAhREAgICFhECAgIVEQICAjMzDP4fDP4fDP4fNEQM/h8M/h8M/h82EQT+Hxz+Hxz+HzYS
 | 寮友小号      | 七队   | 小青 小号         | 八队   | ``                | ``     |
 |               |        | ``                | ``     | ``                | ``     |
 |               |        | ``                | ``     | ``                | ``     |
+
+30
+
+结界挂卡，寄养，截图悬赏和商店
+
+日常+地鬼，协战15次
+
+补充同心队樱饼，逢魔，捐寮勋章
+
+每周商店
+
+    # save source and mat
+
+    fromPILimport Image
+
+    img = Image.fromarray(source,mode='RGB')
+
+    img.save('.\log\source.png')
+
+    img = Image.fromarray(mat,mode='RGB')
+
+    img.save('.\log\mat.png')

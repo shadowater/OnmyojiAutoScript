@@ -1,6 +1,7 @@
 from ast import Return
 import json
 import os
+import time
 from numpy import random
 from time import sleep
 from PIL import Image
@@ -18,12 +19,13 @@ from tasks.TalismanPass.script_task import ScriptTask as talisman_task
 from tasks.Component.SwitchAccount.switch_account import SwitchAccount
 from tasks.Component.SwitchAccount.switch_account_config import AccountInfo
 from tasks.AreaBoss.script_task import ScriptTask as areaboss_task
-
+from tasks.Exploration.script_task import ScriptTask as exploration_task
+from tasks.Component.GeneralInvite.assets import GeneralInviteAssets
 from tasks.WantedQuests.assets import WantedQuestsAssets
 from tasks.MultiAccount.assets import MultiAccountAssets
 from tasks.GlobalGame.assets import GlobalGameAssets
 from tasks.MysteryShop.assets import MysteryShopAssets
-from tasks.GameUi.page import page_main, page_demon_encounter
+from tasks.GameUi.page import page_main, page_demon_encounter, page_guild
 from module.config.config import Config
 from module.device.device import Device
 from module.atom.click import RuleClick
@@ -35,13 +37,15 @@ def screenshot_wantedquests():
         demon.screenshot()
         if demon.appear(WantedQuestsAssets.I_TRACE_ENABLE) or demon.appear(WantedQuestsAssets.I_TRACE_DISABLE):
             break
-        if demon.appear_then_click(WantedQuestsAssets.I_WQ_SEAL, interval=1):
+        if demon.appear_then_click(WantedQuestsAssets.I_WQ_SEAL, interval=3):
+            continue
+        if demon.appear_then_click(WantedQuestsAssets.I_WQ_DONE, interval=3):
             continue
         
     demon.screenshot() 
     img = Image.fromarray(demon.device.image, mode='RGB')
-    img.save(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png")
-    demon.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED)
+    img.save(cur_path.split("OnmyojiAutoScript")[0] + f"{key}_{value}_wantedquests.png")
+    demon.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED, 2)
     sleep(random.random()+0.5)
 
 def screenshot_mysteryshop():
@@ -67,12 +71,26 @@ def screenshot_mysteryshop():
         
         demon.screenshot() 
         img = Image.fromarray(demon.device.image, mode='RGB')
-        img.save(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png")
+        img.save(cur_path.split("OnmyojiAutoScript")[0] + f"{key}_{value}_mysteryshop.png")
             
         sleep(random.random()+0.5)
         demon.ui_click(demon.I_BACK_Y ,demon.I_BACK_BLUE)
         sleep(random.random()+0.5)
         demon.ui_click(demon.I_BACK_BLUE ,demon.I_CHECK_MAIN)
+
+
+def donate_guild():
+    # 进入寮页面，寮信息，寮捐赠，增加勾玉数量，确定捐赠
+    demon.ui_goto(page_guild)
+    demon.ui_click(MultiAccountAssets.I_GUILD_INFO, MultiAccountAssets.I_DONATE, interval=2)
+    demon.click(MultiAccountAssets.I_DONATE, interval=1)
+    demon.ui_click(MultiAccountAssets.I_DONATE_ADD, MultiAccountAssets.I_DONATE_SURE, interval=0.5)
+    demon.click(MultiAccountAssets.I_DONATE_SURE)
+    time.sleep(1)
+    demon.click(demon.I_UI_BACK_YELLOW)
+    demon.click(demon.I_UI_BACK_YELLOW)
+    demon.ui_goto(page_main)
+
 
 def lantern_task():
 
@@ -108,6 +126,22 @@ def lantern_task():
     demon.wait_until_appear(demon.I_DE_AWARD)
     demon.ui_goto(page_main)
 
+def add_team_source(cur_task):
+    # 主页主队，同心队，同心队中心，一键寄存，确认，回到主页
+    
+    if cur_task.ui_get_current_page() != page_main:
+        cur_task.ui_goto(page_main)
+        
+    cur_task.ui_click(cur_task.I_HOME_TEAM, cur_task.I_CHECK_TEAM, 1.5)
+    cur_task.ui_click(cur_task.I_CHECK_TEAM, MultiAccountAssets.I_TEAM_HOME, 1.5)
+    cur_task.ui_click(MultiAccountAssets.I_TEAM_HOME, MultiAccountAssets.I_ONE_STEP_SOURCE, 1.5)
+    cur_task.ui_click(MultiAccountAssets.I_ONE_STEP_SOURCE, GeneralInviteAssets.I_GI_SURE, 1.5)
+    cur_task.ui_click_until_disappear(GeneralInviteAssets.I_GI_SURE, 1.5)
+    
+    if cur_task.ui_get_current_page() != page_main:
+        cur_task.ui_goto(page_main)
+
+
 
 cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
@@ -122,7 +156,7 @@ account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_te
 config = Config('multi_account')
 device = Device(config)
 restart_task = restart_task(config, device)
-# restart_task.app_start()
+restart_task.app_start()
 
 # loop in multi account
 login = login_task(config, device)
@@ -132,27 +166,25 @@ demon = demon_task(config, device)
 trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
+exploration = exploration_task(config, device)
+continue_flag =True
 
 task_list = [trifles, areaboss, talisman]
-run_task_indices = [0,2]
-continue_flag = True
 
-task_list = [task_list[ii] for ii in range(len(task_list)) if ii in run_task_indices]
 for key, value in account_data.items():
     # continue
     
+
     try:
         # switch account
         and_or_ios = True if "and" in key else False
         character = key.split("#")[-1]
-        
+                
         toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
                                 character=character, svr="孤高之心")
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
-
-        lantern_task()
-                
+   
         ## run task 
         for cur_task in task_list:
             try:
@@ -162,18 +194,11 @@ for key, value in account_data.items():
                 
         if demon.ui_get_current_page() != page_main:
             demon.ui_goto(page_main)
-
-        # 截个图，看看勾协和蓝屏黑蛋
-        # value = value.replace("*", "x")
-        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\wantedquests\\{key}_{value}.png"):
-        #     screenshot_wantedquests()
-        # if not os.path.exists(f"D:\\Software\\yys\\MultiAccount\\mysteryshop\\{key}_{value}.png"):
-        #     screenshot_mysteryshop()
             
     except Exception as e:
+        restart_task.app_stop()
         logger.error(f"Account {key} failed")
-        continue_flag = True
-        input("Need human intervention...")
+        break
 
     # 下一个账号
     if continue_flag:

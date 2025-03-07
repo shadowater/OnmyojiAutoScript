@@ -28,7 +28,7 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
         self.O_SA_LOGIN_FORM_SVR_NAME.keyword = svrName
         if self.ocr_appear(self.O_SA_LOGIN_FORM_SVR_NAME):
             return True
-        self.ui_click(self.C_SA_LOGIN_FORM_SWITCH_SVR_BTN, self.I_SA_CHECK_SELECT_SVR_1, 1.5)
+        self.ui_click(self.C_SA_LOGIN_FORM_SWITCH_SVR_BTN, self.I_SA_CHECK_SELECT_SVR_1, 2.5)
         # 展开底部角色列表,显示角色所属服务器
         self.screenshot()
         if self.appear(self.I_SA_CHECK_SELECT_SVR_1) and (not self.appear(self.I_SA_CHECK_SELECT_SVR_2)):
@@ -89,7 +89,7 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
         @rtype:
         """
         logger.info("start switch_character")
-        self.ui_click(self.C_SA_LOGIN_FORM_SWITCH_SVR_BTN, self.I_SA_CHECK_SELECT_SVR_1)
+        self.ui_click(self.C_SA_LOGIN_FORM_SWITCH_SVR_BTN, self.I_SA_CHECK_SELECT_SVR_1, 2.5)
         # 展开底部角色列表,显示角色所属服务器
         self.screenshot()
         while (not self.appear(self.I_SA_CHECK_SELECT_SVR_2)) and self.appear(self.I_SA_CHECK_SELECT_SVR_1):
