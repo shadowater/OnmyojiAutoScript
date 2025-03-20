@@ -11,6 +11,7 @@ import sys
 cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
 sys.path.append(oas_path)
+from tasks.MultiAccount import task_list
 from tasks.Restart.login import LoginHandler as login_task
 from tasks.Restart.script_task import ScriptTask as restart_task
 from tasks.DemonEncounter.script_task import ScriptTask as demon_task
@@ -20,6 +21,9 @@ from tasks.Component.SwitchAccount.switch_account import SwitchAccount
 from tasks.Component.SwitchAccount.switch_account_config import AccountInfo
 from tasks.AreaBoss.script_task import ScriptTask as areaboss_task
 from tasks.Exploration.script_task import ScriptTask as exploration_task
+from tasks.WeeklyTrifles.script_task import ScriptTask as weekly_trifles_task
+from tasks.RichMan.script_task import ScriptTask as richman_task
+from tasks.MysteryShop.script_task import ScriptTask as mysteryshop_task
 from tasks.Component.GeneralInvite.assets import GeneralInviteAssets
 from tasks.WantedQuests.assets import WantedQuestsAssets
 from tasks.MultiAccount.assets import MultiAccountAssets
@@ -167,6 +171,10 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
+weekly_trifles = weekly_trifles_task(config, device)
+richman = richman_task(config, device)
+mysteryshop = mysteryshop_task(config, device)
+task_list = [weekly_trifles, richman, mysteryshop]
 continue_flag =True
 
 for key, value in account_data.items():
@@ -183,14 +191,13 @@ for key, value in account_data.items():
                                 character=character, svr="孤高之心")
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
-
-
-        add_team_source(demon)
-        donate_guild()
-        lantern_task()
-                
-        if demon.ui_get_current_page() != page_main:
-            demon.ui_goto(page_main)
+            
+        for cur_task in task_list:
+            try:
+                cur_task.run()
+            except Exception as e:
+                logger.error(f"Task {cur_task} finished")
+            
             
     except Exception as e:
         restart_task.app_stop()

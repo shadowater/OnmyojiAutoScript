@@ -270,7 +270,7 @@
       "float_time": "00:00:00"
     },
     "activation_config": {
-      "card_rule": "太鼓6 > 太鼓5 > 太鼓4",
+      "card_rule": "太鼓6 > 太鼓5 > 太鼓4 > 太鼓3",
       "exchange_before": true,
       "exchange_max": true,
       "shikigami_class": "N"
@@ -1061,7 +1061,7 @@
     },
     "special_room": {
       "enable": true,
-      "totem_pass": false,
+      "totem_pass": true,
       "medium_bondling_discs": 0,
       "low_bondling_discs": 0
     },
@@ -1081,8 +1081,8 @@
       "black_daruma": true,
       "mystery_amulet": true,
       "ap_100": true,
-      "random_soul": true,
-      "white_daruma": true,
+      "random_soul": false,
+      "white_daruma": false,
       "challenge_pass": 0,
       "red_daruma": 0,
       "broken_amulet": 0
@@ -1108,11 +1108,11 @@
       "demon_souls": 0,
       "demon_class": "土蜘蛛",
       "demon_position": 1,
-      "picture_book_scrap": 30,
+      "picture_book_scrap": 0,
       "picture_book_rule": "auto"
     },
     "bondlings": {
-      "enable": true,
+      "enable": false,
       "random_soul": 100,
       "bondling_stone": 10,
       "high_bondling_discs": 0,
@@ -1178,9 +1178,9 @@
     },
     "trifles": {
       "share_collect": true,
-      "share_area_boss": true,
-      "share_secret": true,
-      "broken_amulet": 100
+      "share_area_boss": false,
+      "share_secret": false,
+      "broken_amulet": 10
     }
   },
   "mystery_shop": {
@@ -1196,10 +1196,10 @@
     },
     "shop_config": {
       "time_of_mystery": "00:00:00",
-      "mystery_amulet": false,
-      "black_daruma_scrap": false,
-      "shop_kaiko_3": false,
-      "shop_kaiko_4": false
+      "mystery_amulet": true,
+      "black_daruma_scrap": true,
+      "shop_kaiko_3": true,
+      "shop_kaiko_4": true
     },
     "share_config": {
       "enable": false,

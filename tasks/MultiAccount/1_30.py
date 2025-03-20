@@ -120,7 +120,7 @@ for key, value in account_data.items():
         sa.switchAccount()
 
       
-
+        # input("Press Enter to continue...")
         connect_team_30(orochi)
 
     except Exception as e:
@@ -128,6 +128,7 @@ for key, value in account_data.items():
         logger.error(f"Account {key} failed")
         break
         
+    print(f"Account {key} finished")
     sleep(5+random.random()*5)
                
                

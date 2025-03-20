@@ -18,6 +18,7 @@ from module.device.device import Device
 from module.logger import logger
 
 
+
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')

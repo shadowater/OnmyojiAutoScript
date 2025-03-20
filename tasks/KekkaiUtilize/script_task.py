@@ -417,6 +417,10 @@ class ScriptTask(GameUi, ReplaceShikigami, KekkaiUtilizeAssets):
         # 最好的结界卡
         logger.info('End best card is %s', card_best)
 
+        if card_best is None:
+            logger.warning('Cannot find best card')
+            return False
+        
         # 进入结界
         self.screenshot()
         if not self.appear(self.I_U_ENTER_REALM):

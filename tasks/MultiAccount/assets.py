@@ -22,7 +22,7 @@ class MultiAccountAssets:
 	# 组队 
 	I_MISSION = RuleImage(roi_front=(964,644,67,42), roi_back=(964,644,67,42), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/mission.png")
 	# 打开自动 
-	I_AUTO = RuleImage(roi_front=(263,649,18,18), roi_back=(263,649,18,18), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/auto.png")
+	I_AUTO = RuleImage(roi_front=(263,649,18,18), roi_back=(100,649,200,18), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/auto.png")
 	# 公会信息 
 	I_GUILD_INFO = RuleImage(roi_front=(1172,627,65,60), roi_back=(1172,627,65,60), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/guild_info.png")
 	# 进入捐赠页面 
