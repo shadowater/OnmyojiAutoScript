@@ -174,7 +174,7 @@ exploration = exploration_task(config, device)
 weekly_trifles = weekly_trifles_task(config, device)
 richman = richman_task(config, device)
 mysteryshop = mysteryshop_task(config, device)
-task_list = [weekly_trifles, richman, mysteryshop]
+task_list = [richman, mysteryshop]
 continue_flag =True
 
 for key, value in account_data.items():

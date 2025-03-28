@@ -1060,24 +1060,24 @@
       "float_time": "00:00:00"
     },
     "special_room": {
-      "enable": true,
+      "enable": false,
       "totem_pass": true,
       "medium_bondling_discs": 0,
       "low_bondling_discs": 0
     },
     "honor_room": {
-      "enable": true,
+      "enable": false,
       "mystery_amulet": false,
       "black_daruma_scrap": false
     },
     "friendship_points": {
-      "enable": true,
+      "enable": false,
       "white_daruma": true,
       "red_daruma": 0,
       "broken_amulet": 0
     },
     "medal_room": {
-      "enable": true,
+      "enable": false,
       "black_daruma": true,
       "mystery_amulet": true,
       "ap_100": true,
@@ -1093,7 +1093,7 @@
       "mystery_amulet": false
     },
     "thousand_things": {
-      "enable": true,
+      "enable": false,
       "mystery_amulet": true,
       "black_daruma_fragment": true,
       "ap": true
@@ -1103,7 +1103,7 @@
       "buy_sale_ticket": true
     },
     "scales": {
-      "enable": true,
+      "enable": false,
       "orochi_scales": 40,
       "demon_souls": 0,
       "demon_class": "土蜘蛛",
@@ -1119,13 +1119,13 @@
       "medium_bondling_discs": 0
     },
     "shrine": {
-      "enable": true,
+      "enable": false,
       "black_daruma": true,
       "white_daruma_five": true,
       "white_daruma_four": true
     },
     "guild_store": {
-      "enable": true,
+      "enable": false,
       "mystery_amulet": true,
       "black_daruma_scrap": true,
       "skin_ticket": 5
