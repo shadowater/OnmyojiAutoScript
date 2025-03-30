@@ -2,6 +2,8 @@ git remote set-url origin https://github.com/shadowater/OnmyojiAutoScript.git
 
 git fetch upstream
 
+git rebase upstream/dev
+
 任务失败时记录存档点
 
 协战15次，截图悬赏和商店

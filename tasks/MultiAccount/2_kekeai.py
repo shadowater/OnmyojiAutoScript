@@ -59,7 +59,7 @@ for key, value in account_data.items():
 
         value = value.replace("*", "x")
         screenshot_wantedquests(kekkaiactivation, key, value, oas_path)
-        screenshot_mysteryshop(kekkaiactivation, key, value, oas_path)
+        # screenshot_mysteryshop(kekkaiactivation, key, value, oas_path)
         # input("Need human intervention...")
         sleep(5+random.random()*5)
     except:
