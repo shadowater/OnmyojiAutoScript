@@ -2,6 +2,7 @@ from ast import Return
 import json
 import os
 import time
+import pandas as pd
 from numpy import random
 from time import sleep
 from PIL import Image
@@ -149,7 +150,7 @@ oas_path = cur_path.split("tasks")[0]
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
+account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv", 'rb')
 
 
 # try start app
@@ -167,9 +168,9 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
-continue_flag =True
+continue_flag =False
 
-for key, value in account_data.items():
+for ii in account_data.items():
     # continue
     
     
@@ -184,10 +185,10 @@ for key, value in account_data.items():
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
-        if "队长" not in key:
-            add_team_source(demon)
-        donate_guild()
-        lantern_task()
+        # if "队长" not in key:
+        #     add_team_source(demon)
+        # donate_guild()
+        # lantern_task()
                 
         if demon.ui_get_current_page() != page_main:
             demon.ui_goto(page_main)
@@ -203,4 +204,4 @@ for key, value in account_data.items():
     else:
         input("Press Enter to continue...")
         
-restart_task.app_stop()
+# restart_task.app_stop()

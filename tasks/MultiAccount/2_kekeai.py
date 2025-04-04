@@ -36,7 +36,7 @@ kekkaiutilize = kekkaiutilize_task(config, device)
 # task_list = []
 task_list = [kekkaiactivation, kekkaiutilize]
 
-for key, value in account_data.items():
+for ii in account_data.items():
     # continue
     
     and_or_ios = True if "and" in key else False
