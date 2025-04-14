@@ -1,4 +1,3 @@
-from ast import Return
 import json
 import os
 from numpy import random
@@ -32,7 +31,7 @@ from module.device.device import Device
 from module.atom.click import RuleClick
 from module.logger import logger
 from module.base.timer import Timer
-
+import pandas as pd
     
 def connect_team_30(cur_task: orochi_task):
     # 主页主队，同心队, 集结，御魂副本集结，副本， 创建队伍，开加成，开自动，run，取消，退出组队，回到主页
@@ -74,8 +73,6 @@ def connect_team_30(cur_task: orochi_task):
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
-
 # sleep(3600)
 
 # try start app
@@ -83,8 +80,6 @@ config = Config('multi_account')
 device = Device(config)
 restart_task = restart_task(config, device)
 restart_task.app_start()
-
-# loop in multi account
 login = login_task(config, device)
 multi_account = MultiAccountAssets()
 
@@ -95,27 +90,20 @@ account_file = oas_path + "\\tasks\\MultiAccount\\cur_account.txt"
 with open(account_file, "r") as f:
     cur_account = f.read()
 continue_flag = True
+account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
+account_data.replace("and", True, inplace=True)
+account_data.replace("ios", False, inplace=True)
+account_data.fillna("", inplace=True)
 
+for ii in account_data.iterrows():
+    ii = ii[1]
 
-for key, value in account_data.items():
-    # continue
-
-    # if continue_flag:
-    #     continue
-    # if value == cur_account:
-    #     continue_flag = False
-    
-    
-    if "队长" not in key:
+    if "队长" not in ii["team"]:
         continue
-
+    print(ii)
     try:
-        ## switch account
-        and_or_ios = True if "and" in key else False
-        character = key.split("#")[-1]
-        
-        toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
-                                character=character, svr="孤高之心")
+        toAccount=AccountInfo(account=ii["account"], apple_or_android=ii["system"],
+                                character=ii["character"], svr="网易一" + ii["server"])
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
@@ -124,12 +112,11 @@ for key, value in account_data.items():
         connect_team_30(orochi)
 
     except Exception as e:
-        restart_task.app_stop()
-        logger.error(f"Account {key} failed")
+        # restart_task.app_stop()
+        logger.error(f"Account {ii['name']} failed")
         break
         
-    print(f"Account {key} finished")
+    print(f"Account {ii['name']} finished")
     sleep(5+random.random()*5)
                
-               
-restart_task.app_stop()
+restart_task.app_stop()                                                                                                                                                                       

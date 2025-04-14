@@ -85,8 +85,10 @@ def donate_guild():
     demon.ui_goto(page_guild)
     demon.ui_click(MultiAccountAssets.I_GUILD_INFO, MultiAccountAssets.I_DONATE, interval=2)
     demon.click(MultiAccountAssets.I_DONATE, interval=1)
-    demon.ui_click(MultiAccountAssets.I_DONATE_ADD, MultiAccountAssets.I_DONATE_SURE, interval=0.5)
-    demon.click(MultiAccountAssets.I_DONATE_SURE)
+    time.sleep(1+random.random())
+    if demon.wait_until_appear(MultiAccountAssets.I_DONATE_ADD, wait_time=0.5):
+        demon.ui_click(MultiAccountAssets.I_DONATE_ADD, MultiAccountAssets.I_DONATE_SURE, interval=0.5)
+        demon.click(MultiAccountAssets.I_DONATE_SURE)
     time.sleep(1)
     demon.click(demon.I_UI_BACK_YELLOW)
     demon.click(demon.I_UI_BACK_YELLOW)
@@ -142,16 +144,12 @@ def add_team_source(cur_task):
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
 
-
-
 cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
 
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv", 'rb')
-
 
 # try start app
 config = Config('multi_account')
@@ -168,39 +166,41 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
-continue_flag =False
+continue_flag =True
 
-for ii in account_data.items():
-    # continue
-    
-    
-    
+account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
+account_data.replace("and", True, inplace=True)
+account_data.replace("ios", False, inplace=True)
+account_data.fillna("", inplace=True)
+
+for ii in account_data.iterrows():
+    ii = ii[1]
+
+    # if "队长" not in ii["team"]:
+    #     continue
+    print(ii)
     try:
-        # switch account
-        and_or_ios = True if "and" in key else False
-        character = key.split("#")[-1]
-                
-        toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
-                                character=character, svr="孤高之心")
+        toAccount=AccountInfo(account=ii["account"], apple_or_android=ii["system"],
+                                character=ii["character"], svr="网易一" + ii["server"])
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
 
-        # if "队长" not in key:
-        #     add_team_source(demon)
-        # donate_guild()
-        # lantern_task()
+        if "队长" not in ii["team"]:
+            add_team_source(demon)
+        donate_guild()
+        lantern_task()
                 
         if demon.ui_get_current_page() != page_main:
             demon.ui_goto(page_main)
             
     except Exception as e:
-        restart_task.app_stop()
-        logger.error(f"Account {key} failed")
+        # restart_task.app_stop()
+        logger.error(f"Account {ii['name']} failed")
         break
 
     # 下一个账号
     if continue_flag:
-        sleep(10+random.random()*5)
+        sleep(5+random.random()*5)
     else:
         input("Press Enter to continue...")
         

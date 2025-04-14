@@ -270,7 +270,7 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
                         return False
                     # selectAccount 后更新图片
                     self.screenshot()
-                self.ui_click(self.I_SA_ACCOUNT_LOGIN_BTN, stop=self.I_SA_LOGIN_FORM_APPLE, interval=1)
+                self.ui_click(self.I_SA_ACCOUNT_LOGIN_BTN, stop=self.I_SA_LOGIN_FORM_APPLE, interval=2)
                 continue
             # 在用户中心界面
             if self.appear(self.I_SA_SWITCH_ACCOUNT_BTN):

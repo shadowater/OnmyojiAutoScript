@@ -3,6 +3,7 @@ import os
 import sys
 from numpy import random
 from time import sleep
+import pandas as pd
 cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
 sys.path.append(oas_path)
@@ -22,7 +23,6 @@ from module.logger import logger
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
 
 # try start app
 config = Config('multi_account')
@@ -34,18 +34,20 @@ restart_task.app_start()
 kekkaiactivation = kekkaiactivation_task(config, device)
 kekkaiutilize = kekkaiutilize_task(config, device)
 # task_list = []
-task_list = [kekkaiactivation, kekkaiutilize]
+task_list = [kekkaiutilize]
 
-for ii in account_data.items():
-    # continue
-    
-    and_or_ios = True if "and" in key else False
-    character = key.split("#")[-1]
-    
-    try:    
+account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
+account_data.replace("and", True, inplace=True)
+account_data.replace("ios", False, inplace=True)
+account_data.fillna("", inplace=True)
 
-        toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
-                                character=character, svr="孤高之心")
+for ii in account_data.iterrows():
+    ii = ii[1]
+    # screenshot_wantedquests(kekkaiactivation, ii["account"], ii["character"],oas_path)
+    print(ii)
+    try:
+        toAccount=AccountInfo(account=ii["account"], apple_or_android=ii["system"],
+                                character=ii["character"], svr="网易一" + ii["server"])
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
             
@@ -56,15 +58,13 @@ for ii in account_data.items():
                 logger.error(f"Task {cur_task} finished")
                 
         kekkaiactivation.ui_goto(page_main)
-
-        value = value.replace("*", "x")
-        screenshot_wantedquests(kekkaiactivation, key, value, oas_path)
+        screenshot_wantedquests(kekkaiactivation, ii["account"].replace("*","x"), ii["character"],oas_path)
         # screenshot_mysteryshop(kekkaiactivation, key, value, oas_path)
         # input("Need human intervention...")
         sleep(5+random.random()*5)
     except:
-        restart_task.app_stop()
-        logger.error(f"Account {key} failed")
+        # restart_task.app_stop()
+        logger.error(f"Account {ii['name']} failed")
         break
     
 restart_task.app_stop()

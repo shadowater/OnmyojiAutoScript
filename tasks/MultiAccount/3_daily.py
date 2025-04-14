@@ -141,7 +141,7 @@ def add_team_source(cur_task):
     if cur_task.ui_get_current_page() != page_main:
         cur_task.ui_goto(page_main)
 
-
+import pandas as pd
 
 cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
@@ -149,7 +149,6 @@ oas_path = cur_path.split("tasks")[0]
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-account_data = json.load(open(oas_path + "\\tasks\\MultiAccount\\account_info_temp.json", 'rb'))
 
 
 # try start app
@@ -169,19 +168,22 @@ talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
 continue_flag =True
 
-task_list = [trifles, areaboss, talisman]
+task_list = [ talisman]
 
-for key, value in account_data.items():
-    # continue
-    
+account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
+account_data.replace("and", True, inplace=True)
+account_data.replace("ios", False, inplace=True)
+account_data.fillna("", inplace=True)
 
+for ii in account_data.iterrows():
+    ii = ii[1]
+
+    # if "队长" not in ii["team"]:
+    #     continue
+    print(ii)
     try:
-        # switch account
-        and_or_ios = True if "and" in key else False
-        character = key.split("#")[-1]
-                
-        toAccount=AccountInfo(account=value, apple_or_android=and_or_ios,
-                                character=character, svr="孤高之心")
+        toAccount=AccountInfo(account=ii["account"], apple_or_android=ii["system"],
+                                character=ii["character"], svr="网易一" + ii["server"])
         sa=SwitchAccount(config,device,toAccount)
         sa.switchAccount()
    
@@ -197,7 +199,7 @@ for key, value in account_data.items():
             
     except Exception as e:
         restart_task.app_stop()
-        logger.error(f"Account {key} failed")
+        logger.error(f"Account {ii['name']} failed")
         break
 
     # 下一个账号
