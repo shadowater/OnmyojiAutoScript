@@ -221,11 +221,11 @@ class ScriptTask(WQExplore, SecretScriptTask, WantedQuestsAssets):
 
         # 存在协作任务则邀请
         self.screenshot()
-        if self.appear(self.I_WQ_INVITE_1) or self.appear(self.I_WQ_INVITE_2) or self.appear(self.I_WQ_INVITE_3):
-            if self.need_invite_vip():
-                self.all_cooperation_invite()
-            else:
-                self.invite_five()
+        # if self.appear(self.I_WQ_INVITE_1) or self.appear(self.I_WQ_INVITE_2) or self.appear(self.I_WQ_INVITE_3):
+        #     if self.need_invite_vip():
+        #         self.all_cooperation_invite()
+        #     else:
+        #         self.invite_five()
         self.ui_click_until_disappear(self.I_UI_BACK_RED)
         self.ui_goto(page_exploration)
         return True

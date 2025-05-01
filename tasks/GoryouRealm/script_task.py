@@ -61,6 +61,7 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, GoryouRealmAssets):
             if ticket == 0:
                 break
 
+            self.ui_click_until_disappear(self.I_YULIN_3_BAD)
             # 点击挑战
             while 1:
                 self.screenshot()

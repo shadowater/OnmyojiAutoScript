@@ -7,7 +7,8 @@ from module.exception import RequestHumanTakeover, GameTooManyClickError, GameSt
 from module.logger import logger
 from tasks.Restart.assets import RestartAssets
 from tasks.base_task import BaseTask
-
+from tasks.GameUi.assets import GameUiAssets
+from tasks.Component.GeneralInvite.assets import GeneralInviteAssets
 
 class LoginHandler(BaseTask, RestartAssets):
     character: str
@@ -184,6 +185,11 @@ class LoginHandler(BaseTask, RestartAssets):
                     logger.info('Close zidu')
                 continue
 
+
+            # 邮件插画取消启用
+            if self.appear_then_click(GeneralInviteAssets.I_GI_CANCEL, interval=1.5):
+                timer_harvest.reset()
+                continue
             # 勾玉
             if self.appear_then_click(self.I_HARVEST_JADE, interval=1.5):
                 timer_harvest.reset()
@@ -211,35 +217,6 @@ class LoginHandler(BaseTask, RestartAssets):
             # 邮件
             # 判断是否勾选了收取邮件（不收取邮件可以查看每日收获）
             if self.config.restart.harvest_config.enable_mail:
-                # if self.appear_then_click(self.I_HARVEST_MAIL, interval=3) or\
-                #         self.appear_then_click(self.I_HARVEST_MAIL_COPY, interval=3):
-                #     timer_harvest.reset()
-                #     self.wait_until_appear(self.I_HARVEST_MAIL_TITLE, wait_time=2)
-                #     if self.appear(self.I_HARVEST_MAIL_TITLE, interval=2.5):
-                #         while 1:
-                #             self.screenshot()
-                #             if self.appear_then_click(self.I_HARVEST_MAIL_ALL, interval=2):
-                #                 timer_harvest.reset()
-                #                 pass
-                #             if self.appear_then_click(self.I_HARVEST_MAIL_CONFIRM, interval=1):
-                #                 continue
-                #
-                #             # 如果一直出现收取全部，那就说明还在进行中
-                #             if self.appear(self.I_HARVEST_MAIL_ALL):
-                #                 pass
-                #             # 如果没有出现 ‘收取全部’ 也没有出现 ‘还未读的邮件’ 那就可以退出了
-                #             if not self.appear(self.I_HARVEST_MAIL_ALL) and not self.appear(self.I_HARVEST_MAIL_OPEN):
-                #                 logger.info('Mail has been harvested')
-                #                 logger.info('Exit mail')
-                #                 break
-                #             if self.appear(self.I_LOGIN_RED_CLOSE, interval=2):
-                #                 self.click(self.I_LOGIN_RED_CLOSE)
-                #                 break
-                #             if self.appear_then_click(self.I_HARVEST_MAIL_OPEN, interval=1):
-                #                 timer_harvest.reset()
-                #                 continue
-                #         continue
-                # 体力
                 if self.appear(self.I_HARVEST_MAIL_CONFIRM):
                     self.click(self.I_HARVEST_MAIL_CONFIRM, interval=2)
                     timer_harvest.reset()
@@ -255,7 +232,7 @@ class LoginHandler(BaseTask, RestartAssets):
                     continue
                 if ((self.appear(self.I_HARVEST_MAIL) or self.appear(self.I_HARVEST_MAIL_COPY))
                         and not self.appear(self.I_LOGIN_RED_CLOSE)):
-                    self.click(self.I_HARVEST_MAIL, interval=2)
+                    self.click(GameUiAssets.I_MAIN_GOTO_MAIL, interval=2)
                     self.wait_until_appear(self.I_HARVEST_MAIL_ALL, wait_time=2)
                     timer_harvest.reset()
                     continue
@@ -272,12 +249,12 @@ class LoginHandler(BaseTask, RestartAssets):
                 timer_harvest.reset()
                 continue
             # 自选御魂
-            if self.appear(self.I_HARVEST_SOUL_1):
-                logger.info('Select soul 1')
-                self.ui_click(self.I_HARVEST_SOUL_1, stop=self.I_HARVEST_SOUL_2)
-                self.ui_click(self.I_HARVEST_SOUL_2, stop=self.I_HARVEST_SOUL_3, interval=3)
-                self.ui_click_until_disappear(click=self.I_HARVEST_SOUL_3)
-                timer_harvest.reset()
+            # if self.appear(self.I_HARVEST_SOUL_1):
+            #     logger.info('Select soul 1')
+            #     self.ui_click(self.I_HARVEST_SOUL_1, stop=self.I_HARVEST_SOUL_2)
+            #     self.ui_click(self.I_HARVEST_SOUL_2, stop=self.I_HARVEST_SOUL_3, interval=3)
+            #     self.ui_click_until_disappear(click=self.I_HARVEST_SOUL_3)
+            #     timer_harvest.reset()
 
             # 红色的关闭
             if self.appear(self.I_LOGIN_RED_CLOSE):

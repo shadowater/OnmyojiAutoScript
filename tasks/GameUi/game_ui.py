@@ -277,6 +277,7 @@ class GameUi(BaseTask, GameUiAssets):
             if self.appear_then_click(self.I_MAIN_GOTO_DAILY, interval=1):
                 continue
             if self.ocr_appear_click(self.O_CLICK_CLOSE_1, interval=1):
+                self.click(self.I_MAIN_GOTO_DAILY)
                 continue
             if self.ocr_appear_click(self.O_CLICK_CLOSE_2, interval=1):
                 continue

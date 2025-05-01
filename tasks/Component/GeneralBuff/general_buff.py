@@ -288,7 +288,7 @@ class GeneralBuff(BaseTask, GeneralBuffAssets):
                 self.screenshot()
                 if self.appear(self.I_CLOSE_RED):
                     break
-                if self.appear_then_click(self.I_OPEN_YELLOW, interval=1):
+                if self.appear_then_click(self.I_OPEN_YELLOW, interval=2):
                     continue
 
     def reject_invite(self):
