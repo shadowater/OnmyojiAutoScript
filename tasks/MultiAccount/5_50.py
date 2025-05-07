@@ -174,14 +174,12 @@ exploration = exploration_task(config, device)
 weekly_trifles = weekly_trifles_task(config, device)
 richman = richman_task(config, device)
 mysteryshop = mysteryshop_task(config, device)
-task_list = [richman, mysteryshop]
+task_list = [richman]
 continue_flag =True
 
 for key, value in account_data.items():
     # continue
-    
-    
-    
+
     try:
         # switch account
         and_or_ios = True if "and" in key else False
