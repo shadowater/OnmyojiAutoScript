@@ -23,7 +23,7 @@ from module.logger import logger
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-sleep(3600*5)
+# sleep(3600*7)
 
 
 # try start app

@@ -73,7 +73,7 @@ def connect_team_30(cur_task: orochi_task):
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-# sleep(3600*1)
+# sleep(3600*4)
 
 # try start app
 config = Config('multi_account')

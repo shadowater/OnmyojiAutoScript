@@ -150,6 +150,7 @@ oas_path = cur_path.split("tasks")[0]
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
+# time.sleep(3600*19)
 
 # try start app
 config = Config('multi_account')

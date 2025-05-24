@@ -149,7 +149,7 @@ oas_path = cur_path.split("tasks")[0]
 daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
 target_json = oas_path + "\\config\\multi_account.json"
 os.system(f'copy {daliy_json} {target_json}')
-# sleep(3600*7)
+# sleep(3600*12)
 
 # try start app
 config = Config('multi_account')
@@ -168,7 +168,7 @@ talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
 continue_flag =True
 
-task_list = [talisman, trifles]
+task_list = [areaboss, talisman, trifles]
 
 account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
 account_data.replace("and", True, inplace=True)
