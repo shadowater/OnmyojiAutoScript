@@ -116,16 +116,15 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
                 tmpClick = RuleClick(
                     roi_back=deepcopy(tmp.roi),
                     roi_front=[
-                        tmp.roi[0] + ocrResBoxList[index][0][0],
-                        tmp.roi[1] + ocrResBoxList[index][0][1],
-                        ocrResBoxList[index][1][0] - ocrResBoxList[index][0][0],
-                        ocrResBoxList[index][2][1] - ocrResBoxList[index][1][1]],
+                        tmp.roi[0] + (ocrResBoxList[index][0][0] + ocrResBoxList[index][1][0]) // 2 -30,
+                        tmp.roi[1] - 100,
+                        60,
+                        80],
                     name="tmpClick"
                 )
 
                 # 此时 tmp 内存储的时角色名位置,而点击角色名没有反应
                 # 所以需要获取到对应的服务器图标位置
-                tmpClick.roi_front[1] -= 30
                 self.ui_click_until_disappear(tmpClick, stop=self.I_SA_CHECK_SELECT_SVR_2,
                                               interval=3)
                 logger.info("character %s found,and clicked svr icon", characterName)
@@ -271,7 +270,7 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
                         return False
                     # selectAccount 后更新图片
                     self.screenshot()
-                self.ui_click(self.I_SA_ACCOUNT_LOGIN_BTN, stop=self.I_SA_LOGIN_FORM_APPLE, interval=1)
+                self.ui_click(self.I_SA_ACCOUNT_LOGIN_BTN, stop=self.I_SA_LOGIN_FORM_APPLE, interval=2)
                 continue
             # 在用户中心界面
             if self.appear(self.I_SA_SWITCH_ACCOUNT_BTN):
