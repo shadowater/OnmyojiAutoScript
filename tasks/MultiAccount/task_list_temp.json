@@ -1,0 +1,38 @@
+{
+    "daliy": [
+        "kekkai_utilize",
+        "kekkai_activation",
+        "demon_encounter",
+        "wanted_quests",
+        
+        "area_boss",
+        "experience_youkai",
+        "gold_youkai",
+        "realm_raid",
+        "ryou_toppa",
+
+        "daily_trifles",
+        "pets",
+        "souls_tidy",
+        "delegation",
+        "exploration",
+        
+        "tako",
+        "orochi",
+        "hunt",
+        "dokan",
+        "abyss_shadows",
+        "talisman_pass"
+    ],
+    "weekly": [
+        "hero_test",
+
+        "true_orochi",
+        "rich_man",
+        "secret",
+        "weekly_trifles",
+        "weekly_trifles",
+        "mystery_shop",
+        "duel"
+    ]
+}

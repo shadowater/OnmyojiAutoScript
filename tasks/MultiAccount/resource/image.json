@@ -1,0 +1,110 @@
+[
+  {
+    "itemName": "team_home",
+    "imageName": "team_home.png",
+    "roiFront": "932,269,38,38",
+    "roiBack": "932,269,38,38",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "同心队中心"
+  },
+  {
+    "itemName": "one_step_source",
+    "imageName": "one_step_source.png",
+    "roiFront": "1186,472,72,142",
+    "roiBack": "1186,472,72,142",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "一键寄存"
+  },
+  {
+    "itemName": "union",
+    "imageName": "union.png",
+    "roiFront": "1095,625,86,59",
+    "roiBack": "1095,625,86,59",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "集结"
+  },
+  {
+    "itemName": "yuhun_union",
+    "imageName": "yuhun_union.png",
+    "roiFront": "415,317,454,51",
+    "roiBack": "415,317,454,51",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "御魂副本集结"
+  },
+  {
+    "itemName": "mission",
+    "imageName": "mission.png",
+    "roiFront": "964,644,67,42",
+    "roiBack": "964,644,67,42",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "组队"
+  },
+  {
+    "itemName": "auto",
+    "imageName": "auto.png",
+    "roiFront": "263,649,18,18",
+    "roiBack": "263,649,18,18",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "打开自动"
+  },
+  {
+    "itemName": "guild_info",
+    "imageName": "guild_info.png",
+    "roiFront": "1172,627,65,60",
+    "roiBack": "1172,627,65,60",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "公会信息"
+  },
+  {
+    "itemName": "donate",
+    "imageName": "donate.png",
+    "roiFront": "265,491,36,36",
+    "roiBack": "265,491,36,36",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "进入捐赠页面"
+  },
+  {
+    "itemName": "donate_add",
+    "imageName": "donate_add.png",
+    "roiFront": "788,290,48,36",
+    "roiBack": "788,290,48,36",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "增加捐赠勾玉数量"
+  },
+  {
+    "itemName": "donate_sure",
+    "imageName": "donate_sure.png",
+    "roiFront": "562,522,157,53",
+    "roiBack": "550,510,200,100",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "确定捐赠"
+  },
+  {
+    "itemName": "sunmming",
+    "imageName": "sunmming.png",
+    "roiFront": "1139,587,80,80",
+    "roiBack": "1139,587,80,80",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "召唤鬼王"
+  },
+  {
+    "itemName": "char",
+    "imageName": "char.png",
+    "roiFront": "1139,587,80,80",
+    "roiBack": "1139,587,80,80",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "挑战"
+  }
+]

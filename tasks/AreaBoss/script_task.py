@@ -2,7 +2,7 @@
 # @author runhey
 # github https://github.com/runhey
 import time
-
+from datetime import datetime
 import cv2
 import numpy as np
 import random
@@ -28,6 +28,10 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AreaBossAssets):
         运行脚本
         :return:
         """
+        if not self.check_time():
+            logger.warning('当前时间地鬼未开放，推迟到18点以确保地鬼人数足够')
+            raise TaskEnd('AreaBoss')
+        
         # 直接手动关闭这个锁定阵容的设置
         self.config.area_boss.general_battle.lock_team_enable = False
         con = self.config.area_boss.boss
@@ -448,6 +452,24 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, AreaBossAssets):
             return 1
         else:
             return 0  # 如果交集的字符少于2个，可以根据需要返回其他值
+        
+    def check_time(self):
+        """
+        检查时间是否正确，
+        如果正确就继续
+        如果不在6:00之后，推迟到当天18:00，确保地鬼人数足够
+        :return:
+        """
+        now = datetime.now()
+        if now.hour < 6:
+            # 6点之前，推迟到当天的18点
+            logger.info('Before 6:00, wait to 18:00')
+            target_time = datetime(now.year, now.month, now.day, 18, 00, 0)
+            self.set_next_run(task='AreaBoss', success=False, finish=False, target=target_time)
+            return False
+        else:
+            return True
+
 if __name__ == '__main__':
     from module.config.config import Config
     from module.device.device import Device
