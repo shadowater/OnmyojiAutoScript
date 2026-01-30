@@ -3,7 +3,7 @@
   "script": {
     "device": {
       "serial": "127.0.0.1:16416",
-      "handle": "multi",
+      "handle": "陪跑",
       "emulatorinfo_path": "",
       "package_name": "com.netease.onmyoji.wyzymnqsd_cps",
       "screenshot_method": "ADB",
@@ -50,7 +50,7 @@
       "enable_ap": true
     },
     "login_character_config": {
-      "character": "第二青"
+      "character": "尘渔"
     }
   },
   "global_game": {
@@ -398,16 +398,16 @@
     },
     "exploration_config": {
       "buff_gold_50_click": false,
-      "buff_gold_100_click": true,
-      "buff_exp_50_click": true,
-      "buff_exp_100_click": true,
+      "buff_gold_100_click": false,
+      "buff_exp_50_click": false,
+      "buff_exp_100_click": false,
       "user_status": "alone",
-      "limit_time": "01:30:00",
+      "limit_time": "00:05:00",
       "minions_cnt": 14,
-      "exploration_level": "第十三章",
+      "exploration_level": "第六章",
       "auto_rotate": "不",
       "choose_rarity": "N卡",
-      "up_type": "up_daruma"
+      "up_type": "up_all"
     },
     "scrolls": {
       "scrolls_enable": false,
@@ -500,8 +500,8 @@
       "float_time": "00:02:00"
     },
     "orochi_config": {
-      "user_status": "leader",
-      "layer": "神罚",
+      "user_status": "alone",
+      "layer": "拾层",
       "limit_time": "01:30:00",
       "limit_count": 15,
       "soul_buff_enable": true
@@ -526,7 +526,7 @@
     "switch_soul": {
       "enable": false,
       "switch_group_team": "3,2",
-      "enable_switch_by_name": true,
+      "enable_switch_by_name": false,
       "group_name": "御魂",
       "team_name": "魂王",
       "auto_switch_soul": false,

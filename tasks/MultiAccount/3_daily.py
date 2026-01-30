@@ -20,6 +20,7 @@ from tasks.Component.SwitchAccount.switch_account import SwitchAccount
 from tasks.Component.SwitchAccount.switch_account_config import AccountInfo
 from tasks.AreaBoss.script_task import ScriptTask as areaboss_task
 from tasks.Exploration.script_task import ScriptTask as exploration_task
+from tasks.Orochi.script_task import ScriptTask as orichi_task
 from tasks.Component.GeneralInvite.assets import GeneralInviteAssets
 from tasks.WantedQuests.assets import WantedQuestsAssets
 from tasks.MultiAccount.assets import MultiAccountAssets
@@ -166,9 +167,11 @@ trifles = trifles_task(config, device)
 areaboss = areaboss_task(config, device)
 talisman = talisman_task(config, device)
 exploration = exploration_task(config, device)
+orichi = orichi_task(config,device)
 continue_flag =True
 
 task_list = [areaboss, talisman, trifles]
+task_list = [orichi]
 
 account_data = pd.read_csv(oas_path + "\\tasks\\MultiAccount\\account_info.csv")
 account_data.replace("and", True, inplace=True)

@@ -84,7 +84,7 @@ class GeneralInviteAssets:
 	# 勾选 默认邀请 
 	I_I_DEFAULT = RuleImage(roi_front=(541,342,41,39), roi_back=(541,342,41,39), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_i_default.png")
 	# description 
-	I_GI_CANCEL = RuleImage(roi_front=(438,407,171,55), roi_back=(438,407,171,55), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_gi_cancel.png")
+	I_GI_CANCEL = RuleImage(roi_front=(438,407,171,55), roi_back=(438,407,171,55), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_cancel.png")
 	# 队长邀请 确定 
 	I_GI_SURE = RuleImage(roi_front=(670,402,175,60), roi_back=(670,402,175,60), threshold=0.8, method="Template matching", file="./tasks/Component/GeneralInvite/gi/gi_gi_sure.png")
 	# 所有的组队界面都有加成 
