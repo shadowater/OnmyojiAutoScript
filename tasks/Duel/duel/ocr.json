@@ -1,8 +1,8 @@
 [
   {
     "itemName": "d_honor",
-    "roiFront": "233,644,131,31",
-    "roiBack": "233,643,131,31",
+    "roiFront": "203,643,131,31",
+    "roiBack": "203,643,131,31",
     "mode": "DigitCounter",
     "method": "Default",
     "keyword": "",
@@ -10,17 +10,17 @@
   },
   {
     "itemName": "d_score",
-    "roiFront": "604,484,108,28",
-    "roiBack": "604,484,108,28",
-    "mode": "DigitCounter",
+    "roiFront": "607,483,47,30",
+    "roiBack": "607,483,47,30",
+    "mode": "Digit",
     "method": "Default",
     "keyword": "",
     "description": "分数"
   },
   {
     "itemName": "d_celeb_star",
-    "roiFront": "625,454,77,37",
-    "roiBack": "625,454,77,37",
+    "roiFront": "682,449,77,37",
+    "roiBack": "682,449,77,37",
     "mode": "Digit",
     "method": "Default",
     "keyword": "",
@@ -46,8 +46,8 @@
   },
   {
     "itemName": "d_ban_name",
-    "roiFront": "92,97,82,25",
-    "roiBack": "92,97,82,25",
+    "roiFront": "679,177,39,156",
+    "roiBack": "679,177,39,156",
     "mode": "Single",
     "method": "Default",
     "keyword": "",
