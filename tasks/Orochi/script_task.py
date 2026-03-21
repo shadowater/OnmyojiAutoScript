@@ -48,6 +48,7 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
             self.ui_goto(page_main)
             if config.orochi_config.soul_buff_enable:
                 self.open_buff()
+                self.gold_100()
                 self.soul(is_open=True)
                 self.close_buff()
 
@@ -63,6 +64,7 @@ class ScriptTask(GeneralBattle, GeneralInvite, GeneralBuff, GeneralRoom, GameUi,
         if config.orochi_config.soul_buff_enable:
             self.open_buff()
             self.soul(is_open=False)
+            self.gold_100(is_open=False)
             self.close_buff()
         # 下一次运行时间
         if success:

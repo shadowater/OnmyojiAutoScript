@@ -325,12 +325,12 @@
   },
   {
     "itemName": "gi_cancel",
-    "imageName": "gi_gi_cancel.png",
+    "imageName": "gi_cancel.png",
     "roiFront": "438,407,171,55",
     "roiBack": "438,407,171,55",
     "method": "Template matching",
     "threshold": 0.8,
-    "description": "description"
+    "description": "队长邀请 取消"
   },
   {
     "itemName": "gi_sure",
