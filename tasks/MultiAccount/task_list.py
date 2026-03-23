@@ -59,7 +59,7 @@ class lantern_task(ScriptTask):
         self.ui_goto(page_demon_encounter)
         
 
-def screenshot_wantedquests(cur_task, key, value, oas_path):
+def screenshot_wantedquests(cur_task, key, value):
 
     while 1:
         cur_task.screenshot()
@@ -72,7 +72,7 @@ def screenshot_wantedquests(cur_task, key, value, oas_path):
         
     cur_task.screenshot() 
     img = Image.fromarray(cur_task.device.image, mode='RGB')
-    img.save(oas_path.split("OnmyojiAutoScript")[0] + "\\resource\\" + f"{key}_{value}_wantedquests.png")
+    img.save("D:\\Software\\yys\\resource\\" + f"{key}_{value}_wantedquests.png")
     cur_task.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED)
     sleep(random.random()+0.5)
 
