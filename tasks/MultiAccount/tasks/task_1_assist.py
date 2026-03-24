@@ -9,7 +9,7 @@ cur_path = os.path.abspath(__file__)
 oas_path = cur_path.split("tasks")[0]
 sys.path.append(oas_path)
 
-from tasks.AreaBoss.script_task import ScriptTask as areaboss_task
+from tasks.EvoZone.script_task import ScriptTask as evozone_task
 from tasks.MultiAccount.base_task import BaseMultiAccountTask, ensure_page_main
 from module.logger import logger
 
@@ -25,7 +25,7 @@ class Task1AssistBoss(BaseMultiAccountTask):
     def init_device(self):
         """初始化设备并创建协战任务实例"""
         super().init_device()
-        self.areaboss = areaboss_task(self.config, self.device)
+        self.areaboss = evozone_task(self.config, self.device)
     
     def execute_task_for_account(self, account_info):
         """为单个账号执行协战任务"""
