@@ -128,11 +128,6 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, RealmRaidAssets):
             self.ui_goto(page_shikigami_records)
             self.run_switch_soul_by_name(con.switch_soul_config.group_name, con.switch_soul_config.team_name)
 
-        self.ui_get_current_page()
-        self.ui_goto(page_main)
-        self.open_buff()
-        self.gold_100()
-        self.close_buff()
 
         self.ui_get_current_page()
         self.ui_goto(page_realm_raid)
@@ -244,9 +239,6 @@ class ScriptTask(GeneralBattle, GameUi, SwitchSoul, RealmRaidAssets):
         self.ui_get_current_page()
         self.ui_goto(page_main)
         
-        self.open_buff()
-        self.gold_100(is_open=False)
-        self.close_buff()
 
         self.set_next_run(task='RealmRaid', success=success, finish=True)
         raise TaskEnd
