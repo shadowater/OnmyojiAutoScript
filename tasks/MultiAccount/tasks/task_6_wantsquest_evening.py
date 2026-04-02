@@ -32,10 +32,11 @@ class Task6WantsquestEvening(BaseMultiAccountTask):
         """为单个账号执行悬赏封印截图"""
         账号 = account_info.get("账号")
         角色 = account_info.get("角色")
+        系统 = account_info.get("系统")
         
         try:
-            screenshot_wantedquests(self.cur_task, 账号, 角色)
-            logger.info(f"账号 {账号}-{角色} 晚上悬赏封印截图完成")
+            screenshot_wantedquests(self.cur_task, 账号, 角色, 系统)
+            logger.info(f"账号 {账号}-{角色}-{系统} 晚上悬赏封印截图完成")
         except Exception as e:
             logger.error(f"账号 {账号}-{角色} 晚上悬赏封印截图失败: {e}")
         

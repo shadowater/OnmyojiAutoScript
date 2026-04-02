@@ -59,7 +59,7 @@ class lantern_task(ScriptTask):
         self.ui_goto(page_demon_encounter)
         
 
-def screenshot_wantedquests(cur_task, key, value):
+def screenshot_wantedquests(cur_task, key, value, system=None):
 
     while 1:
         cur_task.screenshot()
@@ -72,11 +72,19 @@ def screenshot_wantedquests(cur_task, key, value):
         
     cur_task.screenshot() 
     img = Image.fromarray(cur_task.device.image, mode='RGB')
-    img.save("D:\\Software\\yys\\resource\\" + f"{key}_{value}_wantedquests.png")
+    # 替换文件名中的非法字符
+    safe_key = str(key).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+    safe_value = str(value).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+    filename = f"{safe_key}_{safe_value}"
+    if system:
+        safe_system = str(system).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+        filename += f"_{safe_system}"
+    filename += "_wantedquests.png"
+    img.save("D:\\Software\\yys\\resource\\" + filename)
     cur_task.ui_click_until_disappear(GlobalGameAssets.I_UI_BACK_RED)
     sleep(random.random()+0.5)
 
-def screenshot_mysteryshop(cur_task, key, value, oas_path):
+def screenshot_mysteryshop(cur_task, key, value, oas_path, system=None):
     day_of_week = datetime.now().weekday()
     if day_of_week != 2 and day_of_week != 5:
         logger.warning('Today is not MysteryShop day')
@@ -99,7 +107,15 @@ def screenshot_mysteryshop(cur_task, key, value, oas_path):
         
         cur_task.screenshot() 
         img = Image.fromarray(cur_task.device.image, mode='RGB')
-        img.save(oas_path.split("OnmyojiAutoScript")[0] + f"{key}_{value}_mysteryshop.png")
+        # 替换文件名中的非法字符
+        safe_key = str(key).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+        safe_value = str(value).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+        filename = f"{safe_key}_{safe_value}"
+        if system:
+            safe_system = str(system).replace('*', '_').replace(':', '_').replace('?', '_').replace('/', '_').replace('\\', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
+            filename += f"_{safe_system}"
+        filename += "_mysteryshop.png"
+        img.save(oas_path.split("OnmyojiAutoScript")[0] + filename)
             
         sleep(random.random()+0.5)
         cur_task.ui_click(cur_task.I_BACK_Y ,cur_task.I_BACK_BLUE)
