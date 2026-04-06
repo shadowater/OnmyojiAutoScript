@@ -46,9 +46,9 @@
   },
   {
     "itemName": "auto",
-    "imageName": "auto.png",
-    "roiFront": "263,649,18,18",
-    "roiBack": "263,649,18,18",
+    "imageName": "resource_auto.png",
+    "roiFront": "139,652,18,18",
+    "roiBack": "139,652,18,18",
     "method": "Template matching",
     "threshold": 0.8,
     "description": "打开自动"
