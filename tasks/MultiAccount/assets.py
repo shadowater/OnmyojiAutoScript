@@ -35,5 +35,21 @@ class MultiAccountAssets:
 	I_SUNMMING = RuleImage(roi_front=(1139,587,80,80), roi_back=(1139,587,80,80), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/sunmming.png")
 	# 挑战 
 	I_CHAR = RuleImage(roi_front=(1139,587,80,80), roi_back=(1139,587,80,80), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/char.png")
+	# description 
+	I_POINT_IN_MAIN = RuleImage(roi_front=(842,285,44,26), roi_back=(842,285,44,26), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_point_in_main.png")
+	# description 
+	I_POINT_IN_TASK = RuleImage(roi_front=(531,193,40,22), roi_back=(1,1,1278,718), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_point_in_task.png")
+	# description 
+	I_QUESTION = RuleImage(roi_front=(789,286,29,35), roi_back=(2,5,1277,712), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_question.png")
+	# description 
+	I_LOOK = RuleImage(roi_front=(1166,217,90,72), roi_back=(0,3,1279,714), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_look.png")
+	# description 
+	I_BATTLE = RuleImage(roi_front=(482,165,71,67), roi_back=(0,0,1277,718), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_battle.png")
+	# description 
+	I_FASTER = RuleImage(roi_front=(1138,31,57,56), roi_back=(1138,31,57,56), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_faster.png")
+	# description 
+	I_JUMP = RuleImage(roi_front=(841,521,67,39), roi_back=(841,521,67,39), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_jump.png")
+	# description 
+	I_PREPARE = RuleImage(roi_front=(1129,542,100,87), roi_back=(1129,542,100,87), threshold=0.8, method="Template matching", file="./tasks/MultiAccount/resource/resource_prepare.png")
 
 

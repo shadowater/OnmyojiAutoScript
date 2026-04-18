@@ -7,6 +7,9 @@ import numpy as np
 from tqdm.contrib.concurrent import process_map
 from pathlib import Path
 
+import sys
+sys.path.append("D:\\Software\\yys\\OnmyojiAutoScript-easy-install")
+
 from module.logger import logger
 
 MODULE_FOLDER = 'tasks'

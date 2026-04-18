@@ -106,5 +106,77 @@
     "method": "Template matching",
     "threshold": 0.8,
     "description": "挑战"
+  },
+  {
+    "itemName": "point_in_main",
+    "imageName": "resource_point_in_main.png",
+    "roiFront": "842,285,44,26",
+    "roiBack": "842,285,44,26",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "point_in_task",
+    "imageName": "resource_point_in_task.png",
+    "roiFront": "531,193,40,22",
+    "roiBack": "1,1,1278,718",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "question",
+    "imageName": "resource_question.png",
+    "roiFront": "789,286,29,35",
+    "roiBack": "2,5,1277,712",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "look",
+    "imageName": "resource_look.png",
+    "roiFront": "1166,217,90,72",
+    "roiBack": "0,3,1279,714",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "battle",
+    "imageName": "resource_battle.png",
+    "roiFront": "482,165,71,67",
+    "roiBack": "0,0,1277,718",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "faster",
+    "imageName": "resource_faster.png",
+    "roiFront": "1138,31,57,56",
+    "roiBack": "1138,31,57,56",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "jump",
+    "imageName": "resource_jump.png",
+    "roiFront": "841,521,67,39",
+    "roiBack": "841,521,67,39",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
+  },
+  {
+    "itemName": "prepare",
+    "imageName": "resource_prepare.png",
+    "roiFront": "1129,542,100,87",
+    "roiBack": "1129,542,100,87",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "description"
   }
 ]
