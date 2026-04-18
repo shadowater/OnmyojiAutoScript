@@ -52,12 +52,37 @@ class BaseMultiAccountTask:
         try:
             with open(self.account_config_file, 'r', encoding='utf-8') as f:
                 self.account_data = json.load(f)
+            
+            # 检查日期，如果日期不同，则重置任务完成状态并更新日期
+            current_date = datetime.now().strftime('%Y-%m-%d')
+            changed = False
+            for account in self.account_data:
+                # 检查日期是否匹配，或者字段缺失
+                if account.get("日期") != current_date or "任务完成状态" not in account:
+                    account["任务完成状态"] = False
+                    account["日期"] = current_date
+                    changed = True
+            
+            if changed:
+                self.save_account_config()
+                logger.info(f"日期已更新，已重置所有账号的任务完成状态")
+            
             logger.info(f"成功加载 {len(self.account_data)} 个账号配置")
             return True
         except Exception as e:
             logger.error(f"加载账号配置失败: {e}")
             return False
     
+    def save_account_config(self):
+        """保存账号配置文件"""
+        try:
+            with open(self.account_config_file, 'w', encoding='utf-8') as f:
+                json.dump(self.account_data, f, ensure_ascii=False, indent=4)
+            return True
+        except Exception as e:
+            logger.error(f"保存账号配置失败: {e}")
+            return False
+
     def copy_config(self):
         """复制配置文件"""
         os.system(f'copy {self.daliy_json} {self.target_json}')
@@ -132,6 +157,11 @@ class BaseMultiAccountTask:
             账号 = account_info.get("账号")
             角色 = account_info.get("角色")
             
+            # 检查任务是否已完成
+            if account_info.get("任务完成状态", False):
+                logger.info(f"账号 {账号}-{角色} 今日任务已完成，跳过")
+                continue
+            
             # 切换账号
             if not self.switch_account(account_info):
                 logger.error(f"账号 {账号}-{角色} 切换失败,跳过该账号")
@@ -141,6 +171,9 @@ class BaseMultiAccountTask:
             try:
                 self.execute_task_for_account(account_info)
                 logger.info(f"账号 {账号}-{角色} 任务完成")
+                # 更新任务状态并保存
+                account_info["任务完成状态"] = True
+                self.save_account_config()
             except Exception as e:
                 logger.error(f"账号 {账号}-{角色} 任务执行失败: {e}")
             

@@ -6,6 +6,7 @@
 import os
 import sys
 import time
+import json
 import subprocess
 from datetime import datetime, timedelta
 
@@ -18,11 +19,11 @@ from module.logger import logger
 
 # 任务配置: (任务名称, 脚本文件名, 执行时间(小时, 分钟))
 TASK_SCHEDULE = [
-    ("任务1-刷协战", "tasks/task_1_assist.py", 0, 10),
-    ("任务2-队长刷30", "tasks/task_2_leader_30.py", 0, 30),
+    ("任务1-刷协战", "tasks/task_1_assist.py", 0, 0),
+    ("任务2-队长刷30", "tasks/task_2_leader_30.py", 0, 0),
+    ("任务3-补充同心队素材", "tasks/task_3_member_team.py", 0, 0),
+    ("任务4-捐勾玉+逢魔", "tasks/task_4_consortia.py", 0, 0),
     ("任务5-早晨刷勾协", "tasks/task_5_wantsquest_morning.py", 5, 0),
-    ("任务3-补充同心队素材", "tasks/task_3_member_team.py", 10, 0),
-    ("任务4-捐勾玉+逢魔", "tasks/task_4_consortia.py", 17, 0),
     ("任务6-晚上刷勾协", "tasks/task_6_wantsquest_evening.py", 18, 0),
 ]
 
@@ -36,12 +37,6 @@ class TaskScheduler:
     def should_run_task(self, task_name, hour, minute):
         """检查任务是否应该执行"""
         now = datetime.now()
-        
-        # 检查日期是否变化，如果是新的一天，清空已执行记录
-        if now.date() != self.current_date:
-            logger.info(f"新的一天开始: {now.date()}")
-            self.executed_today.clear()
-            self.current_date = now.date()
         
         # 如果今天已经执行过，跳过
         if task_name in self.executed_today:
@@ -58,6 +53,29 @@ class TaskScheduler:
             
         return False
     
+    def sync_morning_task_status(self):
+        """将早晨刷勾协的任务状态更新为已完成 (JSON同步)"""
+        morning_json = "D:\\software\\yys\\resource\\task_account\\account_info_wantsquest_morning.json"
+        if not os.path.exists(morning_json):
+            logger.warning(f"找不到早晨任务配置文件: {morning_json}")
+            return
+            
+        try:
+            with open(morning_json, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            current_date = datetime.now().strftime('%Y-%m-%d')
+            for account in data:
+                account["日期"] = current_date
+                account["任务完成状态"] = True
+            
+            with open(morning_json, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=4)
+            
+            logger.info("已同步更新早晨刷勾协的JSON状态为已完成")
+        except Exception as e:
+            logger.error(f"同步更新早晨任务状态失败: {e}")
+
     def run_task(self, task_name, script_file):
         """执行任务脚本"""
         try:
@@ -88,6 +106,15 @@ class TaskScheduler:
             
             # 标记为已执行
             self.executed_today.add(task_name)
+            
+            # 特殊逻辑：如果是晚上刷勾协，同步更新早晨任务状态
+            if task_name == "任务6-晚上刷勾协":
+                morning_task_name = "任务5-早晨刷勾协"
+                if morning_task_name not in self.executed_today:
+                    logger.info(f"由于执行了 {task_name}，自动将 {morning_task_name} 标记为已完成")
+                    self.executed_today.add(morning_task_name)
+                # 同步更新JSON文件
+                self.sync_morning_task_status()
             
         except Exception as e:
             logger.error(f"========== {task_name} 执行异常: {e} ==========")
@@ -127,10 +154,25 @@ class TaskScheduler:
             while True:
                 now = datetime.now()
                 
+                # 检查日期是否变化，如果是新的一天，清空已执行记录
+                if now.date() != self.current_date:
+                    logger.info(f"新的一天开始: {now.date()}")
+                    self.executed_today.clear()
+                    self.current_date = now.date()
+                
+                # 检查是否当日所有任务已完成
+                all_done = len(self.executed_today) >= len(self.tasks)
+                
                 # 检查每个任务是否需要执行
                 for task_name, script_file, hour, minute in self.tasks:
+                    # 1. 逻辑修改：如果当日所有任务已完成，跳过该任务检查
+                    if all_done:
+                        continue
+                        
                     if self.should_run_task(task_name, hour, minute):
                         self.run_task(task_name, script_file)
+                        # 重新检查是否全部完成
+                        all_done = len(self.executed_today) >= len(self.tasks)
                 
                 # 显示下一个任务信息 (每小时显示一次)
                 if now.minute == 0:
