@@ -19,7 +19,7 @@ class Task5WantsquestMorning(BaseMultiAccountTask):
     """任务5: 早晨悬赏封印截图"""
     
     def __init__(self):
-        account_file = "D:\\software\\yys\\resource\\task_account\\account_info_wantsquest.json"
+        account_file = "D:\\software\\yys\\resource\\task_account\\account_info_wantsquest_morning.json"
         super().__init__(account_file, "任务5-早晨悬赏封印截图")
         self.cur_task = None
     
