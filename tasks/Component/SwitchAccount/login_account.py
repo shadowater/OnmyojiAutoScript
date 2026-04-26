@@ -125,7 +125,7 @@ class LoginAccount(BaseTask, SwitchAccountAssets):
 
                 # 此时 tmp 内存储的时角色名位置,而点击角色名没有反应
                 # 所以需要获取到对应的服务器图标位置
-                tmpClick.roi_front[1] -= 30
+                # tmpClick.roi_front[1] -= 30
                 self.ui_click_until_disappear(tmpClick, stop=self.I_SA_CHECK_SELECT_SVR_2,
                                               interval=3)
                 logger.info("character %s found,and clicked svr icon", characterName)
