@@ -24,7 +24,7 @@ TASK_SCHEDULE = [
     ("任务3-补充同心队素材", "tasks/task_3_member_team.py", 0, 0),
     ("任务4-捐勾玉+逢魔", "tasks/task_4_consortia.py", 0, 0),
     ("任务5-早晨刷勾协", "tasks/task_5_wantsquest_morning.py", 5, 0),
-    ("任务6-晚上刷勾协", "tasks/task_6_wantsquest_evening.py", 18, 0),
+    # ("任务6-晚上刷勾协", "tasks/task_6_wantsquest_evening.py", 18, 0),
 ]
 
 
