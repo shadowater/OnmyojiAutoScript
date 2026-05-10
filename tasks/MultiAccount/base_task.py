@@ -38,7 +38,7 @@ class BaseMultiAccountTask:
         self.oas_path = oas_path
         
         # 配置文件路径
-        self.daliy_json = oas_path + "\\tasks\\MultiAccount\\multi_daily_temp.json"
+        self.daliy_json = "D:\\Software\\yys\\resource\\config\\multi_daily_temp.json"
         self.target_json = oas_path + "\\config\\multi_account.json"
         
         # 初始化设备和配置
