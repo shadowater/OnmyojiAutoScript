@@ -5,8 +5,8 @@ import time
 import cv2
 import numpy as np
 
-from ppocronnx.predict_system import BoxedResult
 from enum import Enum
+from module.ocr.ppocr import BoxedResult
 
 
 from module.base.decorator import cached_property

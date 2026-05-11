@@ -200,9 +200,9 @@ class ModelProxy:
     ):
         payload = pickle.dumps(image, protocol=4)
         results = self.client.detect_and_ocr(payload, drop_score, unclip_ratio, box_thresh, vertical)
-        from ppocronnx.predict_system import BoxedResult
+        from module.ocr.ppocr import BoxedResult
         return [
-            BoxedResult(np.array(item["box"]), None, item["ocr_text"], item["score"])
+            BoxedResult(box=np.array(item["box"]), ocr_text=item["ocr_text"], score=item["score"])
             for item in results
         ]
 
