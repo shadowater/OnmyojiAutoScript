@@ -1,17 +1,7 @@
-import numpy as np
-from paddleocr import PaddleOCR
-from dataclasses import dataclass
-from typing import List, Tuple
+import ppocronnx.predict_system
 
 
-@dataclass
-class BoxedResult:
-    box: np.ndarray
-    ocr_text: str
-    score: float
-
-
-class TextSystem:
+class TextSystem(ppocronnx.predict_system.TextSystem):
     def __init__(
             self,
             use_angle_cls=False,
@@ -21,51 +11,46 @@ class TextSystem:
             det_model_path=None,
             ort_providers=None
     ):
-        self.ocr = PaddleOCR(
+        super().__init__(
             use_angle_cls=use_angle_cls,
-            det_db_box_thresh=box_thresh,
-            det_db_unclip_ratio=unclip_ratio,
-            lang='ch',
-            show_log=False,
-            use_gpu=False
+            box_thresh=box_thresh,
+            unclip_ratio=unclip_ratio,
+            rec_model_path=rec_model_path,
+            det_model_path=det_model_path,
+            ort_providers=ort_providers
         )
-        self.box_thresh = box_thresh
-        self.unclip_ratio = unclip_ratio
 
-    def ocr_single_line(self, img: np.ndarray) -> Tuple[str, float]:
-        result = self.ocr.ocr(img, cls=use_angle_cls if hasattr(self, 'use_angle_cls') else False)
-        if result is None or len(result) == 0 or result[0] is None:
-            return "", 0.0
+    # def ocr_single_line(self, img):
+    #     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    #     return super().ocr_single_line(img)
+    #
+    # def detect_and_ocr(self, img: np.ndarray,**kwargs):
+    #     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    #     return super().detect_and_ocr(img, **kwargs)
 
-        texts = []
-        scores = []
-        for line in result[0]:
-            if line is None:
-                continue
-            text = line[1][0]
-            score = line[1][1]
-            texts.append(text)
-            scores.append(score)
 
-        if not texts:
-            return "", 0.0
+def sorted_boxes(dt_boxes):
+    """
+    Sort text boxes in order from top to bottom, left to right
+    args:
+        dt_boxes(array):detected text boxes with shape [4, 2]
+    return:
+        sorted boxes(array) with shape [4, 2]
+    """
+    num_boxes = dt_boxes.shape[0]
+    sorted_boxes = sorted(dt_boxes, key=lambda x: (x[0][1], x[0][0]))
+    _boxes = list(sorted_boxes)
 
-        combined_text = "".join(texts)
-        avg_score = sum(scores) / len(scores) if scores else 0.0
-        return combined_text, avg_score
+    for i in range(num_boxes - 1):
+        for j in range(i, -1, -1):
+            if abs(_boxes[j + 1][0][1] - _boxes[j][0][1]) < 10 and \
+                    (_boxes[j + 1][0][0] < _boxes[j][0][0]):
+                tmp = _boxes[j]
+                _boxes[j] = _boxes[j + 1]
+                _boxes[j + 1] = tmp
+            else:
+                break
+    return _boxes
 
-    def detect_and_ocr(self, img: np.ndarray, **kwargs) -> List[BoxedResult]:
-        result = self.ocr.ocr(img, cls=False)
-        if result is None or len(result) == 0 or result[0] is None:
-            return []
-
-        boxed_results = []
-        for line in result[0]:
-            if line is None:
-                continue
-            box = np.array(line[0])
-            text = line[1][0]
-            score = line[1][1]
-            boxed_results.append(BoxedResult(box=box, ocr_text=text, score=score))
-
-        return boxed_results
+# sorted_boxes() from PaddleOCR 2.6, newer and better than the one in ppocr-onnx
+ppocronnx.predict_system.sorted_boxes = sorted_boxes

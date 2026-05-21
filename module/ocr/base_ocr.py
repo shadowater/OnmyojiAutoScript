@@ -5,15 +5,14 @@ import time
 import cv2
 import numpy as np
 
+from ppocronnx.predict_system import BoxedResult
 from enum import Enum
-from module.ocr.ppocr import BoxedResult
 
 
 from module.base.decorator import cached_property
 from module.base.utils import area_pad, crop, float2str
-from typing import Any
-
-from module.ocr.models import get_ocr_model
+from module.ocr.ppocr import TextSystem
+from module.ocr.models import OCR_MODEL
 from module.exception import ScriptError
 from module.logger import logger
 
@@ -95,8 +94,8 @@ class BaseCor:
         return f"{self.name}"
 
     @cached_property
-    def model(self) -> Any:
-        return get_ocr_model(self.lang)
+    def model(self) -> TextSystem:
+        return OCR_MODEL.__getattribute__(self.lang)
 
     def pre_process(self, image):
         """
