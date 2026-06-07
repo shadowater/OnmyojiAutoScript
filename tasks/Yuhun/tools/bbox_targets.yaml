@@ -1,0 +1,64 @@
+# 每张 asset_temp 截图要检测的 UI 元素。
+# 标定结果保存到源图同目录：<截图名>.json 和 <截图名>_标注.png
+
+select_empty:
+  image: select/select_empty.png
+  targets:
+    - 全部强化
+    - 第1个御魂等级数字
+    - 列表第1个御魂图标区域
+
+select_one_detail:
+  image: select/select_one_detail.png
+  targets:
+    - 主属性文字区域
+    - 副属性第一行
+    - 副属性第二行
+    - 副属性第三行
+    - 副属性第四行
+
+select_three_detail:
+  image: select/select_three_detail.png
+  targets:
+    - 全部强化
+    - 确认强化御魂区域减号按钮
+
+select_six_ready:
+  image: select/select_six_ready.png
+  targets:
+    - 确认强化御魂数量文字
+    - 全部强化
+    - 第1个御魂选中标记区域
+    - 第2个御魂选中标记区域
+    - 第3个御魂选中标记区域
+    - 第5个御魂选中标记区域
+    - 第7个御魂选中标记区域
+    - 第8个御魂选中标记区域
+
+enhance_calc_dialog:
+  image: enhance/enhance_calc_dialog.png
+  targets:
+    - 计算
+    - 目标等级15
+
+enhance_confirm:
+  image: enhance/enhance_confirm.png
+  targets:
+    - 强化
+    - 目标强化素材消耗区域
+
+result_overview:
+  image: result/result_overview.png
+  targets:
+    - 继续强化
+    - 弃置
+    - 返回
+    - 左上角第1个御魂卡片等级文字Lv
+    - 附属性带箭头的强化项
+
+result_continue_popup:
+  image: result/result_continue_popup.png
+  targets:
+    - 计算
+    - 继续强化
+    - 关闭弹窗按钮

@@ -1,0 +1,93 @@
+{
+  "description": "批量强化·选择页布局源配置。只维护需要手动标定的参数，其余 16 个御魂 bbox 由脚本生成。",
+  "resolution": [
+    1280,
+    720
+  ],
+  "columns": 4,
+  "visible_rows": 4,
+  "grid_spec": {
+    "first_slot": [
+      124,
+      185,
+      107,
+      113
+    ],
+    "gap": [
+      18,
+      21
+    ],
+    "soul_size": [
+      99,
+      103
+    ]
+  },
+  "selection_box_offset": [
+    74,
+    9,
+    30,
+    20
+  ],
+  "selection_templates": [
+    "select_slot_selected.png"
+  ],
+  "detail_attr_width_shrink_level_ge_3": 30,
+  "confirm_panel": {
+    "counter_ocr": [
+      875,
+      116,
+      65,
+      25
+    ],
+    "enhance_all_btn": [
+      872,
+      611,
+      172,
+      48
+    ]
+  },
+  "detail_popup": {
+    "soul_type_level": [
+      680,
+      230,
+      150,
+      26
+    ],
+    "main_attr": [
+      605,
+      308,
+      120,
+      29
+    ],
+    "sub_attr_1": [
+      605,
+      340,
+      300,
+      29
+    ],
+    "sub_attr_2": [
+      605,
+      370,
+      300,
+      29
+    ],
+    "sub_attr_3": [
+      605,
+      402,
+      300,
+      29
+    ],
+    "sub_attr_4": [
+      605,
+      434,
+      300,
+      29
+    ]
+  },
+  "notes": {
+    "grid_spec": "只改 first_slot、gap、soul_size。第 N 个御魂 bbox 由 first_slot + 行列偏移生成。",
+    "soul_type_level": "全局唯一的御魂类型 + level OCR bbox，位置在详情弹窗区域，不随左侧 4x4 御魂格平移。",
+    "detail_attr_width_shrink_level_ge_3": "当 soul_type_level 识别出的御魂等级 >= 3 时，主属性和副属性 OCR 框宽度减少 30 px。",
+    "selection_box_offset": "选中标记模板 ROI 相对每个御魂 bbox 左上角的偏移。"
+  }
+}

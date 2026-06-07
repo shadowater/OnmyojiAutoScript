@@ -1,0 +1,38 @@
+[
+  {
+    "itemName": "result_enhance",
+    "imageName": "result_enhance.png",
+    "roiFront": "900,580,280,100",
+    "roiBack": "900,580,280,100",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "结果页·继续强化"
+  },
+  {
+    "itemName": "result_discard",
+    "imageName": "result_discard.png",
+    "roiFront": "1140,260,90,90",
+    "roiBack": "1140,260,90,90",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "结果页·弃置"
+  },
+  {
+    "itemName": "result_back",
+    "imageName": "result_back.png",
+    "roiFront": "15,12,55,55",
+    "roiBack": "15,12,55,55",
+    "method": "Template matching",
+    "threshold": 0.8,
+    "description": "结果页·返回"
+  },
+  {
+    "itemName": "result_soul_selected",
+    "imageName": "result_soul_selected.png",
+    "roiFront": "60,120,20,20",
+    "roiBack": "60,115,270,270",
+    "method": "Template matching",
+    "threshold": 0.9,
+    "description": "结果页·御魂选中标记（待标定）"
+  }
+]

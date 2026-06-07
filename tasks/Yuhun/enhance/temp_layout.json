@@ -1,0 +1,31 @@
+{
+  "description": "批量强化·强化设置页布局源配置。只维护需要手动标定的按钮模板 ROI。",
+  "resolution": [
+    1280,
+    720
+  ],
+  "actions": {
+    "enhance_calc": {
+      "sourceImage": "enhance_calc_dialog.png",
+      "roi": [
+        1155,
+        608,
+        112,
+        109
+      ]
+    },
+    "enhance_confirm": {
+      "sourceImage": "enhance_confirm.png",
+      "roi": [
+        1153,
+        612,
+        115,
+        99
+      ]
+    }
+  },
+  "notes": {
+    "enhance_calc": "未计算状态右下角「计算」按钮模板区域。",
+    "enhance_confirm": "计算完成后右下角「强化」按钮模板区域。"
+  }
+}

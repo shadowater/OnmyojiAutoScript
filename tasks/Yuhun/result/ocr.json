@@ -1,0 +1,65 @@
+[
+  {
+    "itemName": "result_level_1",
+    "roiFront": "80,125,180,28",
+    "roiBack": "80,125,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第1个御魂等级（坐标与 select 对齐，标定后更新）"
+  },
+  {
+    "itemName": "result_level_2",
+    "roiFront": "390,125,180,28",
+    "roiBack": "390,125,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第2个御魂等级"
+  },
+  {
+    "itemName": "result_level_3",
+    "roiFront": "700,125,180,28",
+    "roiBack": "700,125,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第3个御魂等级"
+  },
+  {
+    "itemName": "result_level_4",
+    "roiFront": "80,405,180,28",
+    "roiBack": "80,405,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第4个御魂等级"
+  },
+  {
+    "itemName": "result_level_5",
+    "roiFront": "390,405,180,28",
+    "roiBack": "390,405,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第5个御魂等级"
+  },
+  {
+    "itemName": "result_level_6",
+    "roiFront": "700,405,180,28",
+    "roiBack": "700,405,180,28",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "结果区第6个御魂等级"
+  },
+  {
+    "itemName": "result_sub_bonus_1",
+    "roiFront": "520,220,220,24",
+    "roiBack": "520,220,220,24",
+    "mode": "Single",
+    "method": "Default",
+    "keyword": "",
+    "description": "本轮附属性加成类型/数值（待标定）"
+  }
+]

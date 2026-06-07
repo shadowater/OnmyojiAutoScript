@@ -1,0 +1,38 @@
+[
+  {
+    "itemName": "result_slot_1",
+    "roiFront": "60,120,260,260",
+    "roiBack": "60,120,260,260",
+    "description": "结果页点击第1个御魂"
+  },
+  {
+    "itemName": "result_slot_2",
+    "roiFront": "370,120,260,260",
+    "roiBack": "370,120,260,260",
+    "description": "结果页点击第2个御魂"
+  },
+  {
+    "itemName": "result_slot_3",
+    "roiFront": "680,120,260,260",
+    "roiBack": "680,120,260,260",
+    "description": "结果页点击第3个御魂"
+  },
+  {
+    "itemName": "result_slot_4",
+    "roiFront": "60,400,260,260",
+    "roiBack": "60,400,260,260",
+    "description": "结果页点击第4个御魂"
+  },
+  {
+    "itemName": "result_slot_5",
+    "roiFront": "370,400,260,260",
+    "roiBack": "370,400,260,260",
+    "description": "结果页点击第5个御魂"
+  },
+  {
+    "itemName": "result_slot_6",
+    "roiFront": "680,400,260,260",
+    "roiBack": "680,400,260,260",
+    "description": "结果页点击第6个御魂"
+  }
+]
